@@ -1,0 +1,37 @@
+{
+  "areas": [
+    {
+      "id": 1,
+      "title": "五邑大学",
+      "dorms": ["黄瓜园", "木耳园"]
+    },
+    {
+      "id": 2,
+      "title": "江门职业",
+      "dorms": ["菊花园", "香蕉园", "黄瓜园"]
+    }
+  ],
+  "brands": [
+    "苏菲", "朵朵", "七度空间"
+  ],
+  "tags": [
+    "日用", "夜用", "护垫"
+  ],
+  "banner": {
+    "alt": "Great Me",
+    "src": "content/shop/banners/0.png",
+    "href": null
+  },
+  "boards": [
+    {
+      "alt": "苏菲 超熟睡",
+      "src": "content/shop/boards/0.jpg",
+      "href": null
+    },
+    {
+      "alt": "苏菲 特供",
+      "src": "content/shop/boards/1.jpg",
+      "href": "detail/?id=3"
+    }
+  ]
+}
