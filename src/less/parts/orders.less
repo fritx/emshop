@@ -1,0 +1,53 @@
+@import "../config";
+
+#orders-div {
+  ul {
+    .order-li {
+      margin: 6px 0 0;
+      .order-box {
+        background-color: @board-bgcolor;
+        border: solid 3px @board-border-color;
+        padding: 4px 1px;
+        .col-box {
+          padding: 2px;
+          text-align: center;
+          .img-box {
+            padding: 3px;
+          }
+          &.desc-box {
+            margin: 0 auto;
+            font-size: 105%;
+            > div {
+              margin: 10px 0 0;
+            }
+            i {
+              margin: 0 8px;
+            }
+          }
+        }
+        .order-desc {
+          width: 100%;
+          font-size: 120%;
+          margin-top: 8px;
+          .cost-box {
+            margin-left: 12px;
+          }
+          .status-box {
+            width: 100%;
+            color: @status-color;
+            text-align: right;
+            .status {
+              margin-right: 12px;
+            }
+          }
+          .message-box {
+            margin: 6px 12px 4px;
+            .message {
+              color: @message-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

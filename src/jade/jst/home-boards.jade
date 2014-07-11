@@ -1,0 +1,10 @@
+ul
+  each board in boards
+    li.board-li.lazy-box
+      - var classes = []
+      if !board.href
+        - classes.push('default')
+      a(href=board.href||false, class=classes)
+        //- board min-height 100px
+        .lazy-box.unloaded
+          img.lazy(alt=board.alt||'', data-original=board.src||false)

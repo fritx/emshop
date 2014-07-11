@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    include meta
+    title= meta.title
+  body
+    script.
+      ;(function (loc, tar) {
+        loc.href = tar + loc.search + loc.hash
+      })(location, 'home/')

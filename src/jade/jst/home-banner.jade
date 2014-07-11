@@ -1,0 +1,5 @@
+- var classes = []
+if !banner.href
+  - classes.push('default')
+a(href=banner.href||false, class=classes)
+  img.lazy(alt=banner.alt||'', data-original=banner.src||false)

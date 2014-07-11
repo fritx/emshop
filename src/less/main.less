@@ -1,0 +1,222 @@
+@import "config";
+
+// override font family
+body,
+.pure-g [class*="pure-u"],
+button, html, input, select, textarea {
+  font-family: "Microsoft Yahei" !important;
+}
+
+body {
+  background-color: @body-bgcolor;
+  color: @body-color;
+}
+a, button {
+  cursor: pointer;
+}
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+input, textarea, select {
+  border-radius: @border-radius !important;
+}
+select {
+  padding-left: 0 !important;
+  padding-top: .4em !important;
+  text-indent: 0.6em;
+}
+
+.none {
+  display: none;
+}
+.default {
+  cursor: default !important;
+}
+.pull-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.trailing:after {
+  content: " ";
+}
+.alertify-message {
+  font-size: 130%;
+}
+.alertify-cover {
+  opacity: .3;
+}
+.title {
+  font-weight: bold;
+}
+.price {
+  color: @price-color;
+}
+.lazy-box {
+  &.unloaded {
+    // box background
+    background-color: @lazy-bgcolor;
+    img {
+      // box background instead of src placeholder
+      visibility: hidden;
+    }
+  }
+}
+
+.btn {
+  border-radius: 0 !important;
+  padding: 0.6em 1.4em;
+  background-color: @btn-bgcolor;
+  color: @btn-color;
+  display: inline-block;
+  border: none;
+  zoom: 1;
+  line-height: normal;
+  white-space: nowrap;
+  vertical-align: baseline;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  &:hover, &:focus {
+    background-color: @btn-bgcolor-hover;
+  }
+  &.primary {
+    background-color: @btn-primary-bgcolor;
+    color: @btn-primary-color;
+    &:hover, &:focus {
+      background-color: @btn-primary-bgcolor-hover;
+    }
+  }
+  &.secondary {
+    background-color: @btn-secondary-bgcolor;
+    color: @btn-secondary-color;
+    &:hover, &:focus {
+      background-color: @btn-secondary-bgcolor-hover;
+    }
+  }
+}
+button {
+  &[disabled] {
+    background-color: @btn-disabled-bgcolor !important;
+    color: @btn-disabled-color !important;
+    opacity: .4;
+    cursor: not-allowed !important;
+  }
+}
+
+.square {
+  position: relative;
+  &:before {
+    content: "";
+    display: block;
+    padding-top: 100%; /* img-box square 1:1 */
+  }
+  > .square-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#header {
+  opacity: @header-opacity;
+  background-color: @header-bgcolor;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  .header-box {
+    color: @header-color;
+    text-align: center;
+    .title-text {
+      font-size: 150%;
+      padding: 9px 0 5px;
+      margin: 2px 0 0;
+    }
+    a.header-btn {
+      color: @header-color;
+      padding: 9px 0 5px;
+      display: block;
+      width: 100%;
+      &:hover, &:focus {
+        background-color: @header-btn-bgcolor-hover;
+      }
+      i {
+        height: 100%;
+      }
+    }
+  }
+}
+
+#content {
+  max-width: 600px;
+  margin: 0 auto;
+  > .content-inner {
+    margin-top: 48px;
+    margin-bottom: 46px;
+    padding: 0 10px 12px;
+  }
+}
+
+#footer {
+  opacity: @footer-opacity;
+  background-color: @footer-bgcolor;
+  position: fixed;
+  z-index: 999;
+  bottom: 0;
+  width: 100%;
+  /* hack for pure-u-*-3 */
+  .pure-g {
+    > .pure-u-1-3 {
+      &:nth-child(1) {
+        width: 33.437%;
+      }
+      &:nth-child(2) {
+        width: 33.125%;
+      }
+      &:nth-child(3) {
+        width: 33.437%;
+      }
+    }
+  }
+  .footer-box {
+    a {
+      width: 100%;
+      color: @footer-color;
+      display: block;
+      padding: 5px 0;
+      text-align: center;
+      &:hover, &:focus {
+        background-color: @footer-btn-bgcolor-hover;
+      }
+      &.active {
+        background-color: @footer-btn-bgcolor-active;
+      }
+    }
+  }
+}

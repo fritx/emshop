@@ -1,0 +1,74 @@
+@import "../config";
+
+#item-div {
+  .img-box {
+    .lazy-box {
+      position: relative;
+      &.unloaded {
+        overflow: hidden;
+        // image min-height 200px
+        height: 200px;
+      }
+      img {
+        width: 100%;
+        margin: 8px 0 0;
+      }
+    }
+  }
+  .line {
+    .label {
+      display: inline-block;
+    }
+  }
+  .desc-box {
+    margin: 0 0 12px;
+    .title {
+      margin: 0.5em 0 0.7em;
+      font-size: 140%;
+    }
+    .line {
+      margin-bottom: 6px;
+    }
+    .label {
+      width: 42%;
+    }
+    .sales {
+      color: @status-color;
+    }
+  }
+  .purchase-form {
+    border-top: 1px dashed @form-border-color;
+    padding-top: 14px;
+    #num {
+      width: 30%;
+      text-align: center !important;
+      padding: 7px 2px;
+      display: inline-block;
+      position: relative;
+      z-index: 9;
+      border-radius: 0 !important;
+    }
+    .label {
+      width: 20%;
+    }
+    .delta-btn {
+      position: relative;
+      z-index: 8;
+      /* according to #num */
+      padding: 8px 12px;
+    }
+    .buttons {
+      margin: 18px 0 0;
+      button {
+        width: 96%;
+      }
+    }
+  }
+  .detail-box {
+    border-top: 1px dashed @form-border-color;
+    margin: 14px 0 6px;
+    p {
+      margin: 14px 0 0;
+    }
+  }
+}

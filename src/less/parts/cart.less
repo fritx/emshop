@@ -1,0 +1,89 @@
+@import "../config";
+
+#items-div {
+  ul {
+    .item-li {
+      margin: 6px 0 0;
+      .item-box {
+        background-color: @board-bgcolor;
+        border: solid 3px @board-border-color;
+        padding: 1px;
+        .col-box {
+          padding: 2px;
+          text-align: center;
+          .img-box {
+            padding: 3px;
+            img {
+              margin: 0 auto;
+            }
+          }
+          &.tick-box {
+            padding: 2px;
+            .tick {
+              width: 16px;
+              height: 16px;
+              display: block;
+              margin: 42px auto 0;
+              background-color: @tick-bgcolor;
+              border: solid 1px @tick-border-color;
+              padding: 0;
+              &.on {
+                i {
+                  visibility: visible;
+                }
+              }
+              i {
+                visibility: hidden;
+              }
+            }
+          }
+          &.desc-box {
+            margin: 0 auto;
+            > div {
+              margin: 10px 0 0;
+            }
+            i {
+              margin: 0 8px;
+            }
+            input[type="text"].num {
+              width: 30%;
+              text-align: center;
+              display: inline-block;
+              padding: 4px 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#order-div {
+  padding: 8px 0 0;
+  width: 100%;
+  font-size: 120%;
+  /* hack for pure-u-*-3 */
+  .pure-g {
+    > .pure-u-2-3 {
+      width: 66.5625%;
+    }
+    > .pure-u-1-3 {
+      width: 33.4375%;
+    }
+  }
+  .cost-box {
+    background-color: @board-bgcolor;
+    padding: 0 0 0 18px;
+    height: 41px;
+    line-height: 41px;
+  }
+  .btn-box {
+    button {
+      display: block;
+      width: 100%;
+      height: 41px;
+      line-height: 41px;
+      padding: 0;
+    }
+  }
+}
