@@ -13,17 +13,20 @@ function fetchShop(cb) {
       banner: {
         alt: shop.banner.alt,
         src: shop.banner.src,
-        href: shop.banner.url
+        href: tran(shop.banner.url)
       },
       boards: _.map(shop.advs, function (adv) {
         return {
           alt: adv.alt,
           src: adv.src,
-          href: adv.url
+          href: tran(adv.url)
         };
       })
     });
   });
+  function tran(url) {
+    return url.replace('http://greatme.org/s/detail.html', 'detail/');
+  }
 }
 function fetchProductsList(opt, cb) {
   opt = opt || {};

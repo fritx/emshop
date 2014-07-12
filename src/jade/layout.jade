@@ -4,9 +4,9 @@ html
     base(href='../')
     include meta
     title= meta.title
-    link(rel='stylesheet', href='../css/_deps.css')
-    link(rel='stylesheet', href='../css/_site.css')
-    link(rel='stylesheet', href='../css/parts/#{name}.css')
+    link(rel='stylesheet', href='css/_deps.css')
+    link(rel='stylesheet', href='css/_site.css')
+    link(rel='stylesheet', href='css/parts/#{name}.css')
     block head
   body
     block header
@@ -15,8 +15,8 @@ html
       .content-inner
         block content
     include footer
-    script(src='../js/_deps.js')
-    script(src='../js/_site.js')
-    script(src='../js/jst.js')
-    script(src='../js/parts/#{name}.js')
+    script(src='js/_deps.js')
+    script(src='js/_site.js')
+    script(src='js/jst.js')
+    script(src='js/parts/#{name}.js')
     block tail
