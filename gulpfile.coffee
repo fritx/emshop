@@ -10,8 +10,9 @@ cssmin = require 'gulp-cssmin'
 rename = require 'gulp-rename'
 data = require 'gulp-data'
 modify = require 'gulp-modify'
-clean = require 'gulp-clean'
+rimraf = require 'gulp-rimraf'
 
+module.exports = gulp
 apiType = 'node'
 locals = require './locals.json'
 
@@ -161,7 +162,7 @@ gulp.task 'js', ['js:site', 'js:parts', 'js:jst']
 
 gulp.task 'clean', ->
   gulp.src 'dist', read: false
-  .pipe clean()
+  .pipe rimraf()
 
 gulp.task 'client', ['pack', 'html', 'css', 'js']
 
