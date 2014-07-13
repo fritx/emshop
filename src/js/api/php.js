@@ -1,5 +1,5 @@
 function fetchShop(cb) {
-  $.get('../../gettags.php', function (data) {
+  $.get('../gettags.php', function (data) {
     var shop = JSON.parse(data);
     // TODO: php side has no banner yet
     shop.banner = shop.banner || (shop.banners && shop.banners[0]) || {
@@ -43,10 +43,10 @@ function fetchProductsList(opt, cb) {
   })[orderVal];
 
   if (keyword) {
-    url = '../../search.php';
+    url = '../search.php';
     o.keyword = keyword;
   } else {
-    url = '../../getgoodslist.php';
+    url = '../getgoodslist.php';
     if (brand) {
       o.brand = brand;
     } else if (tags) {
@@ -61,7 +61,7 @@ function fetchProductsList(opt, cb) {
   });
 }
 function fetchProduct(opt, cb) {
-  $.get('../../getgoods.php?id=' + opt.id, function (data) {
+  $.get('../getgoods.php?id=' + opt.id, function (data) {
     var dItems = JSON.parse(data);
     var item = parseItem(dItems && dItems[0]);
     cb(item);
@@ -153,7 +153,7 @@ function saveOrder(oItems, profile, extra, cb) {
   });
   store.set('myOrders', orders);
   saveOrderProfile(profile, function () {
-    $.post('../../order.php', {
+    $.post('../order.php', {
       consumer_name: profile.name,
       telephone: profile.shortTel + '/' + profile.tel,
       address: profile.block + '-' + profile.flat,
@@ -186,7 +186,7 @@ function parseItem(dItem) {
   return item;
 }
 function fetchAreasList(cb) {
-  $.get('../../getarealist.php', function (data) {
+  $.get('../getarealist.php', function (data) {
     var areas = JSON.parse(data);
     cb(_.map(areas, function (area) {
       return {
@@ -201,12 +201,12 @@ function saveArea(area, cb) {
   store.set('orderProfile', _.extend(profile, {
     area: area.title
   }));
-  $.post('../../setarea.php', { area_id: area.id }, function (data) {
+  $.post('../setarea.php', { area_id: area.id }, function (data) {
     cb(!!data);
   });
 }
 function setDormsList(cb) {
-  $.get('../../getdormitories.php', function (data) {
+  $.get('../getdormitories.php', function (data) {
     area.dorms = JSON.parse(data);
     cb();
   });

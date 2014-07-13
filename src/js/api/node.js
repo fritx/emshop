@@ -1,5 +1,5 @@
 function fetchShop(cb) {
-  $.get('../api/fetch_shop', function (shop) {
+  $.get('api/fetch_shop', function (shop) {
     cb(shop);
   });
 }
@@ -11,7 +11,7 @@ function fetchProductsList(opt, cb) {
     keyword = opt.keyword,
     orderVal = opt.orderVal,
     orderKey = opt.orderKey;
-  $.get('../api/fetch_items', function (items) {
+  $.get('api/fetch_items', function (items) {
     // select items
     if (brand != null) {
       items = _.where(items, { brand: brand });
@@ -129,7 +129,7 @@ function saveOrder(oItems, profile, extra, cb) {
   });
   store.set('myOrders', orders);
   saveOrderProfile(profile, function () {
-    $.post('../api/create_order', {
+    $.post('api/create_order', {
       items: oItems,
       profile: profile,
       extra: extra

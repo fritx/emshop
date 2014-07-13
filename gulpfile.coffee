@@ -13,7 +13,8 @@ modify = require 'gulp-modify'
 rimraf = require 'gulp-rimraf'
 
 module.exports = gulp
-apiType = 'node'
+isPhpApi = ~process.argv.indexOf('--php')
+apiType = if isPhpApi then 'php' else 'node'
 locals = require './locals.json'
 
 # pack
