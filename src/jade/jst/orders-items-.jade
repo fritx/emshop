@@ -10,8 +10,8 @@ each item in order.items
                   img.lazy(data-original=item.image||false)
     .pure-u-2-3
       .col-box.desc-box
-        .title= item.title
+        div= item.title
         div
-          span.price ￥#{item._price.toFixed(1)}
+          span.price ￥#{item.price.toFixed(1)}
           i.fa.fa-times
           span= item.num

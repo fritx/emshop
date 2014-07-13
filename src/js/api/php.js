@@ -153,10 +153,12 @@ function saveOrder(oItems, profile, extra, cb) {
   });
   store.set('myOrders', orders);
   saveOrderProfile(profile, function () {
-    $.post('../order.php', {
+    $.post('../orderaction.php?action=order', {
       consumer_name: profile.name,
-      telephone: profile.shortTel + '/' + profile.tel,
-      address: profile.block + '-' + profile.flat,
+      telephone: profile.signerTel,
+      address: profile.signerAddr,
+      payer_telephone: profile.payerTel,
+      payway: profile.payway,
       products_id: _.pluck(oItems, 'id').join(','),
       products_amounts: _.pluck(oItems, 'num').join(','),
       message: extra.message

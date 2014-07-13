@@ -13,41 +13,31 @@ function showForm(profile) {
         key: 'name'
       },
       {
-        title: '短　号',
-        key: 'shortTel'
+        title: '收货人电话',
+        key: 'signerTel'
       },
       {
-        title: '长　号',
-        key: 'tel'
+        title: '收货人地址',
+        key: 'signerAddr'
       },
       {
-        title: '宿舍楼',
-        key: 'block',
+        title: '付款人电话',
+        key: 'payerTel'
+      },
+      {
+        title: '付款方式',
+        key: 'payway',
         type: 'select',
-        list: _.reduce(area.dorms, function (memo, v) {
-          memo[v] = v;
-          return memo;
-        }, {})
-      },
-      {
-        title: '宿舍号',
-        key: 'flat'
-      },
-      {
-        title: '时间段',
-        key: 'time',
-        type: 'radio',
         list: {
-          '12:30~13:00': '12:30~13:00',
-          '21:30~22:30': '21:30~22:30',
-          '其他时间请备注': ''
+          '货到付款': 'offline',
+          '在线支付': 'online'
         }
       }
     ],
     [
       {
         key: 'message',
-        placeholder: '给 Great Me 留言'
+        placeholder: '备注信息'
       }
     ]
   ];

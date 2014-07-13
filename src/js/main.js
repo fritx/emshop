@@ -106,10 +106,7 @@ function fetchOrderProfile(cb) {
   cb(profile);
 }
 function saveOrderProfile(profile, cb) {
-  store.set('orderProfile', _.pick(profile, [
-    'area', 'name', 'shortTel',
-    'tel', 'block', 'flat', 'time'
-  ]));
+  store.set('orderProfile', profile);
   cb();
 }
 function saveCart(xItems, cb) {

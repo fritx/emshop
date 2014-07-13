@@ -1,0 +1,56 @@
+[
+  {
+    "id": 10,
+    "name": "fritx",
+    "tel": "13400000000",
+    "address": "江门 五邑大学 16-308 1号床",
+    "message": "送到床上来",
+    "date": "2014-07-11 21:10:30",
+    "price": 100.8,
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "way": "offline",
+    "status": "TRADE_FINISHED"
+  },
+  {
+    "id": 15,
+    "name": "林亮",
+    "tel": "18600000000",
+    "address": "深圳 南山区 高新园 科技南",
+    "message": "",
+    "date": "2014-07-12 08:30:00",
+    "price": 100.8,
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "way": "offline",
+    "status": "WAIT_BUYER_CONFIRM_GOODS"
+  },
+  {
+    "id": 20,
+    "name": "fritx",
+    "tel": "13400000000",
+    "address": "江门 五邑大学 16-308 1号床",
+    "message": "不要添加剂",
+    "date": "2014-07-13 08:30:00",
+    "price": 100.8,
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "way": "offline",
+    "status": "WAIT_SELLER_SEND_GOODS"
+  }
+]

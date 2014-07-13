@@ -176,4 +176,4 @@ gulp.task 'dev', ->
   livereload.listen()
   require './server'
 
-gulp.task 'default', ['dev']
+gulp.task 'default', ['client']

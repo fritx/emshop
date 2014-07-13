@@ -19,6 +19,10 @@ app.use '/content', express.static(
 
 # logic
 
+store =
+  address: require './data/address'
+  orders: require './data/orders'
+
 app.get '/api/fetch_shop', (req, res)->
   res.json require './data/shop'
 app.get '/api/fetch_items', (req, res)->
@@ -26,7 +30,14 @@ app.get '/api/fetch_items', (req, res)->
 
 app.post '/api/create_order', (req, res)->
   console.log req.body
-  res.end 'ok'
+  # lack of logic
+  res.send 'ok'
+
+app.get '/api/fetch_address', (req, res)->
+  res.json store.address
+
+app.get '/api/fetch_orders', (req, res)->
+  res.json store.orders
 
 # listen
 

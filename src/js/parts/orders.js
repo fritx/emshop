@@ -1,11 +1,13 @@
 function listOrders(orders) {
   _.each(orders, function (order) {
-    order.profile = order.profile || {};
-    order.extra = order.extra || {};
     order.cost = _.reduce(order.items, function (memo, item) {
-      return memo + item._price * item.num;
+      return memo + item.price * item.num;
     }, 0);
-    order.status = order.status || '谢谢惠顾';
+    order.status = ({
+      WAIT_SELLER_SEND_GOODS: '等待卖家发货',
+      WAIT_BUYER_CONFIRM_GOODS: '等待买家收货',
+      TRADE_FINISHED: '交易完成'
+    })[order.status];
   });
   $('#orders-div')
     .html(

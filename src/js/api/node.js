@@ -92,24 +92,24 @@ function fetchCurrOrder(cb) {
   });
 }
 function fetchOrdersList(cb) {
-  var orders = store.get('myOrders');
-  if (orders.length <= 0) {
-    return cb(orders);
-  }
-  fetchProductsList(null, function (items) {
-    var xOrders = _.map(orders, function (order) {
-      order.items = _.map(order.items, function (oItem) {
-        var item = _.findWhere(items, { id: oItem.id });
-        return item ? _.extend(oItem, {
-          title: item.title,
-          image: item.image,
-          _price: item._price
-        }) : null;
+  $.get('api/fetch_orders', function(orders) {
+    if (orders.length <= 0) {
+      return cb(orders);
+    }
+    fetchProductsList(null, function (items) {
+      var xOrders = _.map(orders, function (order) {
+        order.items = _.map(order.items, function (oItem) {
+          var item = _.findWhere(items, { id: oItem.id });
+          return item ? _.extend(oItem, {
+            title: item.title,
+            image: item.image
+          }) : null;
+        });
+        order.items = _.compact(order.items);
+        return order;
       });
-      order.items = _.compact(order.items);
-      return order;
+      cb(_.compact(xOrders));
     });
-    cb(_.compact(xOrders));
   });
 }
 function checkAllOnSale(oItems, cb) {
