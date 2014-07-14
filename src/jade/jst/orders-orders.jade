@@ -1,18 +1,34 @@
 ul.pure-g
   each order in orders
     li.pure-u-1.order-li
-      .order-box
+      .order-box(data-id=order.id)
         include orders-items-
         .pure-g.order-desc
+          if order.message
+            .pure-u-1
+              .message-box
+                span.trailing 备 注 :&nbsp;
+                span.message= order.message
           .pure-u-1-2
             .cost-box
               span.trailing 实付款 :
               span.price ￥#{order.cost.toFixed(1)}
           .pure-u-1-2
             .status-box
-              span.status= order.status
-          if order.message
-            .pure-u-1
-              .message-box
-                span.trailing 留　言 :&nbsp;
-                span.message= order.message
+              span.status= order._status
+          case order.status
+            when 'TRADE_FINISHED'
+            when 'REFUND_CLOSED'
+              break
+            default
+              .pure-u-1
+                .action-box.pull-right
+                  case order.status
+                    when 'WAIT_SELLER_SEND_GOODS'
+                      button(data-action="refund") 退货
+                    when 'WAIT_BUYER_CONFIRM_GOODS_AND_PAY'
+                      button(data-action="confirm-and-pay") 确认并付款
+                      button(data-action="refund") 退货
+                    when 'WAIT_SELLER_AGREE'
+                    when 'WAIT_SELLER_AGREE_AFTER_SENT'
+                      button(data-action="cancel-refund") 取消退货

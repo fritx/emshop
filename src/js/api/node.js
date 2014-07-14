@@ -53,42 +53,44 @@ function fetchProduct(opt, cb) {
   });
 }
 function fetchCart(cb) {
-  var cItems = store.get('cartItems');
-  if (cItems.length <= 0) {
-    return cb(cItems);
-  }
-  fetchProductsList(null, function (dItems) {
-    var xItems = _.map(cItems, function (cItem) {
-      var dItem = _.findWhere(dItems, { id: cItem.id });
-      if (!dItem) {
-        return null;
-      }
-      var xItem = _.extend(cItem, {
-        title: dItem.title,
-        image: dItem.image,
-        store: dItem.store,
-        onSale: dItem.onSale,
-        _price: dItem._price
+  fetchCartItems(function(cItems) {
+    if (cItems.length <= 0) {
+      return cb(cItems);
+    }
+    fetchProductsList(null, function (dItems) {
+      var xItems = _.map(cItems, function (cItem) {
+        var dItem = _.findWhere(dItems, { id: cItem.id });
+        if (!dItem) {
+          return null;
+        }
+        var xItem = _.extend(cItem, {
+          title: dItem.title,
+          image: dItem.image,
+          store: dItem.store,
+          onSale: dItem.onSale,
+          _price: dItem._price
+        });
+        return xItem;
       });
-      return xItem;
+      cb(_.compact(xItems));
     });
-    cb(_.compact(xItems));
   });
 }
 function fetchCurrOrder(cb) {
-  var oItems = store.get('currOrderItems');
-  fetchProductsList(null, function (dItems) {
-    var xItems = _.map(oItems, function (cItem) {
-      var dItem = _.findWhere(dItems, { id: cItem.id });
-      if (!dItem) {
-        return null;
-      }
-      var xItem = _.extend(cItem, {
-        _price: dItem._price
+  fetchCurrOrderItems(function(oItems) {
+    fetchProductsList(null, function (dItems) {
+      var xItems = _.map(oItems, function (cItem) {
+        var dItem = _.findWhere(dItems, { id: cItem.id });
+        if (!dItem) {
+          return null;
+        }
+        var xItem = _.extend(cItem, {
+          _price: dItem._price
+        });
+        return xItem;
       });
-      return xItem;
+      cb(_.compact(xItems));
     });
-    cb(_.compact(xItems));
   });
 }
 function fetchOrdersList(cb) {
@@ -120,23 +122,18 @@ function checkAllOnSale(oItems, cb) {
     }));
   });
 }
-function saveOrder(oItems, profile, extra, cb) {
-  var orders = store.get('myOrders');
-  orders.push({
-    items: oItems,
-    profile: profile,
-    extra: extra
-  });
-  store.set('myOrders', orders);
-  saveOrderProfile(profile, function () {
-    $.post('api/create_order', {
-      items: oItems,
-      profile: profile,
-      extra: extra
-    }, function (data) {
-      cb(data === 'ok');
-    });
-  });
+function saveOrder(oItems, info, cb) {
+  saveOrderInfo(
+    _.omit(info, ['message']),
+    function () {
+      $.post('api/create_order', {
+        items: oItems,
+        info: info
+      }, function (data) {
+        cb(data === 'ok');
+      });
+    }
+  );
 }
 function fetchAreasList(cb) {
   fetchShop(function (shop) {
@@ -144,12 +141,21 @@ function fetchAreasList(cb) {
   });
 }
 function saveArea(area, cb) {
-  var profile = store.get('orderProfile');
-  store.set('orderProfile', _.extend(profile, {
-    area: area.title
-  }));
-  cb(true);
+  fetchOrderInfo(function(info) {
+    info.area = area.title;
+    saveOrderInfo(info, function() {
+      cb(true);
+    });
+  });
 }
 function setDormsList(cb) {
   cb(); // do nothing
+}
+function actionOrder(id, action, cb) {
+  $.post('api/action_order', {
+    id: id,
+    action: action
+  }, function(data) {
+    cb(data === 'ok');
+  });
 }

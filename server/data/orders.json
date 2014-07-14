@@ -33,7 +33,7 @@
       }
     ],
     "way": "offline",
-    "status": "WAIT_BUYER_CONFIRM_GOODS"
+    "status": "WAIT_BUYER_CONFIRM_GOODS_AND_PAY"
   },
   {
     "id": 20,
@@ -52,5 +52,59 @@
     ],
     "way": "offline",
     "status": "WAIT_SELLER_SEND_GOODS"
+  },
+  {
+    "id": 21,
+    "name": "林亮",
+    "tel": "18600000000",
+    "address": "深圳 南山区 高新园 科技南",
+    "message": "",
+    "date": "2014-07-12 08:30:00",
+    "price": 100.8,
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "way": "offline",
+    "status": "WAIT_SELLER_AGREE"
+  },
+  {
+    "id": 51,
+    "name": "林亮",
+    "tel": "18600000000",
+    "address": "深圳 南山区 高新园 科技南",
+    "message": "",
+    "date": "2014-07-12 08:30:00",
+    "price": 100.8,
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "way": "offline",
+    "status": "WAIT_SELLER_AGREE_AFTER_SENT"
+  },
+  {
+    "id": 31,
+    "name": "林亮",
+    "tel": "18600000000",
+    "address": "深圳 南山区 高新园 科技南",
+    "message": "",
+    "date": "2014-07-12 08:30:00",
+    "price": 100.8,
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "way": "offline",
+    "status": "REFUND_CLOSED"
   }
 ]

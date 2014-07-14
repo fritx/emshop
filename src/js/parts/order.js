@@ -1,4 +1,4 @@
-function showForm(profile) {
+function showForm(info) {
   // default fields
   fields = [
     [
@@ -10,27 +10,26 @@ function showForm(profile) {
       },
       {
         title: '收货人',
-        key: 'name'
+        key: 'signer_name'
       },
       {
         title: '收货人电话',
-        key: 'signerTel'
+        key: 'signer_tel'
       },
       {
         title: '收货人地址',
-        key: 'signerAddr'
+        key: 'signer_addr'
       },
       {
         title: '付款人电话',
-        key: 'payerTel'
+        key: 'payer_tel'
       },
       {
         title: '付款方式',
-        key: 'payway',
+        key: 'pay_way',
         type: 'select',
         list: {
-          '货到付款': 'offline',
-          '在线支付': 'online'
+          '货到付款': 'offline'
         }
       }
     ],
@@ -41,10 +40,12 @@ function showForm(profile) {
       }
     ]
   ];
-  // fill profile
-  if (profile) {
-    _.each(_.flatten(fields), function (field) {
-      field.value = profile[field.key] || field.value;
+  _fields = _.flatten(fields);
+
+  // fill info
+  if (info) {
+    _.each(_fields, function (field) {
+      field.value = info[field.key] || field.value;
     });
   }
   $('#form-div')
@@ -88,23 +89,16 @@ function toggleButton(ok) {
 function submitOrder() {
   // disable submit button
   toggleButton(false);
-  var profile = _.reduce(fields[0], function (memo, field) {
+  var info = _.reduce(_fields, function (memo, field) {
     var $el = $('[name='+ field.key +']');
     memo[$el.attr('name')] = getVal($el);
     return memo;
   }, {});
-  var extra = _.reduce(fields[1], function (memo, field) {
-    var $el = $('[name='+ field.key +']');
-    memo[$el.attr('name')] = getVal($el);
-    return memo;
-  }, {});
-  // time field
-  var time = profile.time;
-  if (time) {
-    extra.message = time + '送货。 ' + extra.message;
-  }
-  if (_.some(['area', 'name', 'tel', 'block', 'flat'], function (key) {
-    return profile[key] === '';
+  if (_.some([
+    'area', 'signer_name', 'signer_tel', 'signer_addr',
+    'payer_tel', 'pay_way'
+  ], function (key) {
+    return info[key] === '';
   })) {
     toggleButton(true);
     return notify('订单填写不完整');
@@ -114,7 +108,7 @@ function submitOrder() {
       toggleButton(true);
       return;
     }
-    saveOrder(oItems, profile, extra, function (ok) {
+    saveOrder(oItems, info, function (ok) {
       if (!ok) {
         toggleButton(true);
         return notify('部分商品仍在补货中，可以先购买其他的~', true);
@@ -130,7 +124,7 @@ function submitOrder() {
 }
 
 /* variables */
-var fields;
+var fields, _fields;
 var oItems;
 
 initPage(function () {
@@ -146,10 +140,10 @@ initPage(function () {
         return notify('没有勾选的宝贝', true);
       }
 
-      fetchOrderProfile(function (profile) {
+      fetchOrderInfo(function (info) {
         setDormsList(function () {
           /* list items */
-          showForm(profile);
+          showForm(info);
 
           /* ready */
           loadReady();

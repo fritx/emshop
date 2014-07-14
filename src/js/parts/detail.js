@@ -22,24 +22,26 @@ function addToCart(silient, cb) {
     return notify('正在补货中，明天才可以购买哦~');
   }
 
-  var items = store.get('cartItems');
-  var itemIn = _.findWhere(items, { id: id });
-  if (itemIn) {
-    itemIn.num += num;
-  } else {
-    items.push({
-      id: id,
-      num: num,
-      checked: true
+  fetchCartItems(function(items) {
+    var itemIn = _.findWhere(items, { id: id });
+    if (itemIn) {
+      itemIn.num += num;
+    } else {
+      items.push({
+        id: id,
+        num: num,
+        checked: true
+      });
+    }
+    saveCart(items, function() {
+      if (!silient) {
+        notify('已加入购物车');
+      }
+      if (cb) {
+        cb();
+      }
     });
-  }
-  store.set('cartItems', items);
-  if (!silient) {
-    notify('已加入购物车');
-  }
-  if (cb) {
-    cb();
-  }
+  });
 }
 
 function gotoCart() {

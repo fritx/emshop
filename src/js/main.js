@@ -84,6 +84,8 @@ function notify(msg, back) {
     // redirect
     if (back === true) {
       history.back();
+    } else if (back === 0) {
+      location.reload();
     } else if (_.isString(back)) {
       link(back);
     }
@@ -101,24 +103,33 @@ function calcPrice(item) {
 function checkOnSale(item, num) {
   return item.onSale && item.store >= (num || 0);
 }
-function fetchOrderProfile(cb) {
-  var profile = store.get('orderProfile');
-  cb(profile);
+function fetchOrderInfo(cb) {
+  var info = store.get('order_info');
+  cb(info);
 }
-function saveOrderProfile(profile, cb) {
-  store.set('orderProfile', profile);
+function saveOrderInfo(info, cb) {
+  store.set('order_info', info);
   cb();
 }
+function fetchCartItems(cb) {
+  var items = store.get('cart_items');
+  cb(items);
+}
 function saveCart(xItems, cb) {
-  store.set('cartItems', _(xItems).chain().map(function (xItem) {
+  store.set('cart_items', _(xItems).chain().map(function (xItem) {
     return _.pick(xItem, ['id', 'num', 'checked']);
   }).sortBy('id').value());
   cb();
 }
+function fetchCurrOrderItems(cb) {
+  var items = store.get('curr_order_items');
+  cb(items);
+}
 function saveCurrOrder(xItems, cb) {
-  store.set('currOrderItems', _(xItems).chain().map(function (xItem) {
-    return _.pick(xItem, ['id', 'num']);
-  }).sortBy('id').value());
+  store.set('curr_order_items', _(xItems)
+    .chain().map(function (xItem) {
+      return _.pick(xItem, ['id', 'num']);
+    }).sortBy('id').value());
   cb();
 }
 
@@ -149,10 +160,9 @@ function initPage(cb) {
     throw new Error('Browser too bad.');
   }
 
-  store.set('cartItems', store.get('cartItems') || []);
-  store.set('currOrderItems', store.get('currOrderItems') || []);
-  store.set('orderProfile', store.get('orderProfile') || {});
-  store.set('myOrders', store.get('myOrders') || []);
+  store.set('cart_items', store.get('cart_items') || []);
+  store.set('curr_order_items', store.get('curr_order_items') || []);
+  store.set('order_info', store.get('order_info') || {});
 
   $(document).delegate('[href]', 'click', function (e) {
     if (!(e.ctrlKey || e.shiftKey || e.metaKey)) {
@@ -162,42 +172,43 @@ function initPage(cb) {
   });
 
   fetchAreasList(function (areas) {
-    var profile = store.get('orderProfile');
-    area = params.area ? _.findWhere(areas, { id: +params.area }) :
-      _.findWhere(areas, { title: profile.area }) || areas[0];
-    if (!area) {
-      notify('你的地区信息不对啊!');
-      throw new Error('Invalid area.');
-    }
-    if (!params.area) {
-      link(location.href);
-    }
-
-    saveArea(area, function (ok) {
-      if (!ok) {
+    fetchOrderInfo(function(info) {
+      area = params.area ? _.findWhere(areas, { id: +params.area }) :
+        _.findWhere(areas, { title: info.area }) || areas[0];
+      if (!area) {
         notify('你的地区信息不对啊!');
         throw new Error('Invalid area.');
       }
+      if (!params.area) {
+        link(location.href);
+      }
 
-      _.templateSettings = {
-        evaluate: /{{([\s\S]+?)}}/g,
-        interpolate: /{{=([\s\S]+?)}}/g,
-        escape: /{{-([\s\S]+?)}}/g
-      };
-
-      alertify.set({
-        labels: {
-          ok: '好的',
-          cancel: '不要'
+      saveArea(area, function (ok) {
+        if (!ok) {
+          notify('你的地区信息不对啊!');
+          throw new Error('Invalid area.');
         }
-      });
 
-      $(function () {
-        /* toggling footer */
-        makeFooterToggle();
-      });
+        _.templateSettings = {
+          evaluate: /{{([\s\S]+?)}}/g,
+          interpolate: /{{=([\s\S]+?)}}/g,
+          escape: /{{-([\s\S]+?)}}/g
+        };
 
-      cb();
+        alertify.set({
+          labels: {
+            ok: '好的',
+            cancel: '不要'
+          }
+        });
+
+        $(function () {
+          /* toggling footer */
+          makeFooterToggle();
+        });
+
+        cb();
+      });
     });
   });
 }

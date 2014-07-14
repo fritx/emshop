@@ -68,71 +68,90 @@ function fetchProduct(opt, cb) {
   });
 }
 function fetchCart(cb) {
-  var cItems = store.get('cartItems');
-  if (cItems.length <= 0) {
-    return cb(cItems);
-  }
-  async.map(cItems, function (cItem, next) {
-    fetchProduct({ id: cItem.id }, function (item) {
-      if (item == null) {
-        return next(null, item);
-      }
-      var xItem = _.extend(cItem, {
-        title: item.title,
-        image: item.image,
-        store: item.store,
-        onSale: item.onSale,
-        _price: item._price
-      });
-      next(null, xItem);
-    });
-  }, function (err, xItems) {
-    cb(_.compact(xItems));
-  });
-}
-function fetchCurrOrder(cb) {
-  var oItems = store.get('currOrderItems');
-  async.map(oItems, function (oItem, next) {
-    fetchProduct({ id: oItem.id }, function (item) {
-      if (!item) {
-        return next(null, null);
-      }
-      var xItem = _.extend(oItem, {
-        _price: item._price
-      });
-      next(null, xItem);
-    });
-  }, function (err, xItems) {
-    cb(_.compact(xItems));
-  });
-}
-function fetchOrdersList(cb) {
-  var orders = store.get('myOrders');
-  if (orders.length <= 0) {
-    return cb(orders);
-  }
-  async.map(orders, function (order, next) {
-    async.map(order.items, function (oItem, next) {
-      fetchProduct({ id: oItem.id }, function (item) {
-        if (!item) {
-          return next(null, null);
+  fetchCartItems(function(cItems) {
+    if (cItems.length <= 0) {
+      return cb(cItems);
+    }
+    async.map(cItems, function (cItem, next) {
+      fetchProduct({ id: cItem.id }, function (item) {
+        if (item == null) {
+          return next(null, item);
         }
-        var xItem = _.extend(oItem, {
+        var xItem = _.extend(cItem, {
           title: item.title,
           image: item.image,
+          store: item.store,
+          onSale: item.onSale,
           _price: item._price
         });
         next(null, xItem);
       });
     }, function (err, xItems) {
-      order.items = _.compact(xItems);
-      if (order.items.length <= 0) {
-        return next(null, null);
-      }
-      next(null, order);
+      cb(_.compact(xItems));
     });
-  }, function (err, xOrders) {
-    cb(_.compact(xOrders));
+  });
+}
+function fetchCurrOrder(cb) {
+  fetchCurrOrderItems(function(oItems) {
+    async.map(oItems, function (oItem, next) {
+      fetchProduct({ id: oItem.id }, function (item) {
+        if (!item) {
+          return next(null, null);
+        }
+        var xItem = _.extend(oItem, {
+          _price: item._price
+        });
+        next(null, xItem);
+      });
+    }, function (err, xItems) {
+      cb(_.compact(xItems));
+    });
+  });
+}
+function fetchOrdersList(cb) {
+  $.get('../orderaction.php?action=get', {
+    consumerOPID: 'consumerOPID'  // testing
+  }, function(data) {
+    var orders = JSON.parse(data);
+    if (orders.length <= 0) {
+      return cb(orders);
+    }
+    async.map(orders, function (order, next) {
+      async.map(order.items, function (oItem, next) {
+        fetchProduct({ id: oItem.id }, function (item) {
+          if (!item) {
+            return next(null, null);
+          }
+          var xItem = _.extend(oItem, {
+            title: item.title,
+            image: item.image,
+            _price: item._price
+          });
+          next(null, xItem);
+        });
+      }, function (err, xItems) {
+        order.items = _.compact(xItems);
+        if (order.items.length <= 0) {
+          return next(null, null);
+        }
+        var xOrder = {
+          id: order.id,
+          area: order.area,
+          signer_name: order.consumer_name,
+          signer_tel: order.telephone,
+          signer_addr: order.address,
+          payer_tel: order.payer_telephone,
+          pay_way: order.payway,
+          message: order.message,
+          date: order.time,
+          status: order.pStatus,
+          items: JSON.parse(order.products_json)
+        };
+        next(null, xOrder);
+      });
+    }, function (err, xOrders) {
+      cb(_.compact(xOrders));
+    });
   });
 }
 function checkAllOnSale(oItems, cb) {
@@ -144,24 +163,17 @@ function checkAllOnSale(oItems, cb) {
     cb(ok);
   });
 }
-function saveOrder(oItems, profile, extra, cb) {
-  var orders = store.get('myOrders');
-  orders.push({
-    items: oItems,
-    profile: profile,
-    extra: extra
-  });
-  store.set('myOrders', orders);
-  saveOrderProfile(profile, function () {
+function saveOrder(oItems, info, cb) {
+  saveOrderInfo(info, function () {
     $.post('../orderaction.php?action=order', {
-      consumer_name: profile.name,
-      telephone: profile.signerTel,
-      address: profile.signerAddr,
-      payer_telephone: profile.payerTel,
-      payway: profile.payway,
+      consumer_name: info.signer_name,
+      telephone: info.signer_tel,
+      address: info.signer_addr,
+      payer_telephone: info.payer_tel,
+      payway: info.pay_way,
+      message: info.message,
       products_id: _.pluck(oItems, 'id').join(','),
-      products_amounts: _.pluck(oItems, 'num').join(','),
-      message: extra.message
+      products_amounts: _.pluck(oItems, 'num').join(',')
     }, function (data) {
       cb(data === 'ok');
     });
@@ -199,12 +211,15 @@ function fetchAreasList(cb) {
   });
 }
 function saveArea(area, cb) {
-  var profile = store.get('orderProfile');
-  store.set('orderProfile', _.extend(profile, {
-    area: area.title
-  }));
-  $.post('../setarea.php', { area_id: area.id }, function (data) {
-    cb(!!data);
+  fetchOrderInfo(function(info) {
+    info.area = area.title;
+    saveOrderInfo(info, function() {
+      $.post('../setarea.php', {
+        area_id: area.id
+      }, function (area) {
+        cb(!!area);
+      });
+    });
   });
 }
 function setDormsList(cb) {

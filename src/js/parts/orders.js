@@ -3,18 +3,38 @@ function listOrders(orders) {
     order.cost = _.reduce(order.items, function (memo, item) {
       return memo + item.price * item.num;
     }, 0);
-    order.status = ({
+    order._status = ({
       WAIT_SELLER_SEND_GOODS: '等待卖家发货',
-      WAIT_BUYER_CONFIRM_GOODS: '等待买家收货',
+      WAIT_BUYER_CONFIRM_GOODS_AND_PAY: '等待买家收货并付款',
+      WAIT_SELLER_AGREE: '等待卖家同意退货 (未发)',
+      WAIT_SELLER_AGREE_AFTER_SENT: '等待卖家同意退货 (已发)',
+      REFUND_CLOSED: '已退货',
       TRADE_FINISHED: '交易完成'
     })[order.status];
   });
-  $('#orders-div')
+  $orders
     .html(
       // reverse orders
       JST['orders-orders']({ orders: orders.reverse() })
     );
+
+console.log($orders.find('.action-box button'))
+
+  $orders.find('.action-box button')
+    .on('click', function() {
+      var $btn = $(this);
+      var action = $btn.attr('data-action');
+      var id = +$btn.closest('.order-box').attr('data-id');
+      actionOrder(id, action, function(ok) {
+        if (!ok) {
+          return notify('操作失败');
+        }
+        notify('操作成功', 0);
+      });
+    });
 }
+
+var $orders = $('#orders-div');
 
 initPage(function () {
   $(function () {

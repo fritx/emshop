@@ -39,6 +39,11 @@ app.get '/api/fetch_address', (req, res)->
 app.get '/api/fetch_orders', (req, res)->
   res.json store.orders
 
+app.post '/api/action_order', (req, res)->
+  console.log req.body
+  # lack of logic
+  res.send 'ok'
+
 # listen
 
 app.listen PORT, ->
