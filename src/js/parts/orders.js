@@ -1,10 +1,10 @@
 function listOrders(orders) {
   _.each(orders, function (order) {
     order._status = ({
-      OFFLINE_WAIT_SELLER_SEND_GOODS: '等待卖家发货',
-      OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY: '等待买家确认收货并付款',
-      OFFLINE_WAIT_SELLER_CONFIRM_MONEY: '等待卖家确认收到货款',
-      OFFLINE_WAIT_SELLER_AGREE: '等待卖家同意退货 (未发)',
+      OFFLINE_WAIT_SELLER_SEND_GOOD: '等待卖家发货',
+      OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY: '等待买家收货付款',
+      OFFLINE_WAIT_SELLER_CONFIRM_MONEY: '等待卖家确认付款',
+      OFFLINE_CANCEL_ORDER_BEFORE_SEND: '等待卖家同意退货 (未发)',
       OFFLINE_WAIT_SELLER_AGREE_AFTER_SENT: '等待卖家同意退货 (已发)',
       OFFLINE_WAIT_BUYER_RETURN_GOODS: '等待买家退货',
       OFFLINE_WAIT_SELLER_CONFIRM_GOODS: '等待卖家确认收货',

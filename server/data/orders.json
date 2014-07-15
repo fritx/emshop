@@ -69,7 +69,7 @@
       }
     ],
     "way": "offline",
-    "status": "OFFLINE_WAIT_SELLER_SEND_GOODS"
+    "status": "OFFLINE_WAIT_SELLER_SEND_GOOD"
   },
   {
     "id": 21,
