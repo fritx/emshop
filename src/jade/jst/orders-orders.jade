@@ -17,18 +17,20 @@ ul.pure-g
             .status-box
               span.status= order._status
           case order.status
-            when 'TRADE_FINISHED'
-            when 'REFUND_CLOSED'
+            when 'OFFLINE_TRADE_FINISHED'
+            when 'OFFLINE_WAIT_SELLER_CONFIRM_MONEY'
+            when 'OFFLINE_REFUND_FINISHED'
+            when 'OFFLINE_WAIT_BUYER_RETURN_GOODS'
+            when 'OFFLINE_WAIT_SELLER_CONFIRM_GOODS'
+            when 'OFFLINE_WAIT_SELLER_AGREE'
+            when 'OFFLINE_WAIT_SELLER_AGREE_AFTER_SENT'
               break
             default
               .pure-u-1
                 .action-box.pull-right
                   case order.status
-                    when 'WAIT_SELLER_SEND_GOODS'
-                      button(data-action="refund") 退货
-                    when 'WAIT_BUYER_CONFIRM_GOODS_AND_PAY'
-                      button(data-action="confirm-and-pay") 确认并付款
-                      button(data-action="refund") 退货
-                    when 'WAIT_SELLER_AGREE'
-                    when 'WAIT_SELLER_AGREE_AFTER_SENT'
-                      button(data-action="cancel-refund") 取消退货
+                    when 'OFFLINE_WAIT_SELLER_SEND_GOODS'
+                      button(data-action="OFFLINE_CANCEL_ORDER_BEFORE_SEND") 退货
+                    when 'OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY'
+                      button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_MONEY") 确认并付款
+                      button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_GOODS") 退货

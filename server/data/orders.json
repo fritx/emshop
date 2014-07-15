@@ -6,7 +6,7 @@
     "address": "江门 五邑大学 16-308 1号床",
     "message": "送到床上来",
     "date": "2014-07-11 21:10:30",
-    "price": 100.8,
+    "cost": 100.8,
     "items": [
       {
         "id": 1,
@@ -15,7 +15,25 @@
       }
     ],
     "way": "offline",
-    "status": "TRADE_FINISHED"
+    "status": "OFFLINE_TRADE_FINISHED"
+  },
+  {
+    "id": 12,
+    "name": "林亮",
+    "tel": "18600000000",
+    "address": "深圳 南山区 高新园 科技南",
+    "message": "",
+    "date": "2014-07-12 08:30:00",
+    "cost": 100.8,
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "way": "offline",
+    "status": "OFFLINE_WAIT_SELLER_CONFIRM_MONEY"
   },
   {
     "id": 15,
@@ -24,7 +42,7 @@
     "address": "深圳 南山区 高新园 科技南",
     "message": "",
     "date": "2014-07-12 08:30:00",
-    "price": 100.8,
+    "cost": 100.8,
     "items": [
       {
         "id": 1,
@@ -33,7 +51,7 @@
       }
     ],
     "way": "offline",
-    "status": "WAIT_BUYER_CONFIRM_GOODS_AND_PAY"
+    "status": "OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY"
   },
   {
     "id": 20,
@@ -42,7 +60,7 @@
     "address": "江门 五邑大学 16-308 1号床",
     "message": "不要添加剂",
     "date": "2014-07-13 08:30:00",
-    "price": 100.8,
+    "cost": 100.8,
     "items": [
       {
         "id": 1,
@@ -51,7 +69,7 @@
       }
     ],
     "way": "offline",
-    "status": "WAIT_SELLER_SEND_GOODS"
+    "status": "OFFLINE_WAIT_SELLER_SEND_GOODS"
   },
   {
     "id": 21,
@@ -60,7 +78,7 @@
     "address": "深圳 南山区 高新园 科技南",
     "message": "",
     "date": "2014-07-12 08:30:00",
-    "price": 100.8,
+    "cost": 100.8,
     "items": [
       {
         "id": 1,
@@ -69,25 +87,7 @@
       }
     ],
     "way": "offline",
-    "status": "WAIT_SELLER_AGREE"
-  },
-  {
-    "id": 51,
-    "name": "林亮",
-    "tel": "18600000000",
-    "address": "深圳 南山区 高新园 科技南",
-    "message": "",
-    "date": "2014-07-12 08:30:00",
-    "price": 100.8,
-    "items": [
-      {
-        "id": 1,
-        "price": 50.4,
-        "num": 2
-      }
-    ],
-    "way": "offline",
-    "status": "WAIT_SELLER_AGREE_AFTER_SENT"
+    "status": "OFFLINE_WAIT_SELLER_AGREE"
   },
   {
     "id": 31,
@@ -96,7 +96,7 @@
     "address": "深圳 南山区 高新园 科技南",
     "message": "",
     "date": "2014-07-12 08:30:00",
-    "price": 100.8,
+    "cost": 100.8,
     "items": [
       {
         "id": 1,
@@ -105,6 +105,60 @@
       }
     ],
     "way": "offline",
-    "status": "REFUND_CLOSED"
+    "status": "OFFLINE_WAIT_SELLER_AGREE_AFTER_SENT"
+  },
+  {
+    "id": 51,
+    "name": "林亮",
+    "tel": "18600000000",
+    "address": "深圳 南山区 高新园 科技南",
+    "message": "",
+    "date": "2014-07-12 08:30:00",
+    "cost": 100.8,
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "way": "offline",
+    "status": "OFFLINE_WAIT_SELLER_CONFIRM_GOODS"
+  },
+  {
+    "id": 51,
+    "name": "林亮",
+    "tel": "18600000000",
+    "address": "深圳 南山区 高新园 科技南",
+    "message": "",
+    "date": "2014-07-12 08:30:00",
+    "cost": 100.8,
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "way": "offline",
+    "status": "OFFLINE_WAIT_BUYER_RETURN_GOODS"
+  },
+  {
+    "id": 51,
+    "name": "林亮",
+    "tel": "18600000000",
+    "address": "深圳 南山区 高新园 科技南",
+    "message": "",
+    "date": "2014-07-12 08:30:00",
+    "cost": 100.8,
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "way": "offline",
+    "status": "OFFLINE_REFUND_FINISHED"
   }
 ]

@@ -117,15 +117,23 @@ function fetchOrdersList(cb) {
       return cb(orders);
     }
     async.map(orders, function (order, next) {
-      async.map(order.items, function (oItem, next) {
-        fetchProduct({ id: oItem.id }, function (item) {
+      var ids = order.products_id.split(',');
+      var amounts = order.products_amounts.split(',');
+      var dItems = _.map(ids, function(id, i) {
+        return {
+          id: id,
+          num: amounts[i]
+        };
+      });
+      async.map(dItems, function (dItem, next) {
+        fetchProduct({ id: dItem.id }, function (item) {
           if (!item) {
             return next(null, null);
           }
-          var xItem = _.extend(oItem, {
+          var xItem = _.extend(dItem, {
             title: item.title,
             image: item.image,
-            _price: item._price
+            price: item._price
           });
           next(null, xItem);
         });
@@ -135,7 +143,7 @@ function fetchOrdersList(cb) {
           return next(null, null);
         }
         var xOrder = {
-          id: order.id,
+          id: +order.id,
           area: order.area,
           signer_name: order.consumer_name,
           signer_tel: order.telephone,
@@ -143,9 +151,9 @@ function fetchOrdersList(cb) {
           payer_tel: order.payer_telephone,
           pay_way: order.payway,
           message: order.message,
-          date: order.time,
-          status: order.pStatus,
-          items: JSON.parse(order.products_json)
+          items: xItems,
+          cost: +order.price,
+          status: order.pStatus
         };
         next(null, xOrder);
       });
@@ -226,5 +234,12 @@ function setDormsList(cb) {
   $.get('../getdormitories.php', function (data) {
     area.dorms = JSON.parse(data);
     cb();
+  });
+}
+function actionOrder(id, action, cb) {
+  $.post('../orderaction.php?action=' + action, {
+    order_id: id
+  }, function(data) {
+    cb(data === 'ok');
   });
 }
