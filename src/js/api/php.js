@@ -173,19 +173,32 @@ function checkAllOnSale(oItems, cb) {
 }
 function saveOrder(oItems, info, cb) {
   saveOrderInfo(info, function () {
-    $.post('../orderaction.php?action=order', {
-      consumer_name: info.signer_name,
-      telephone: info.signer_tel,
-      address: info.signer_addr,
-      payer_telephone: info.payer_tel,
-      payway: info.pay_way,
-      message: info.message,
-      products_id: _.pluck(oItems, 'id').join(','),
-      products_amounts: _.pluck(oItems, 'num').join(',')
-    }, function (data) {
-      cb(data === 'ok');
+    checkCoupons(coupons, function(ok) {
+      if (!ok) {
+        return cb(0);
+      }
+      $.post('../orderaction.php?action=order', {
+        consumer_name: info.signer_name,
+        telephone: info.signer_tel,
+        address: info.signer_addr,
+        payer_telephone: info.payer_tel,
+        payway: info.pay_way,
+        message: info.message,
+        products_id: _.pluck(oItems, 'id').join(','),
+        products_amounts: _.pluck(oItems, 'num').join(',')
+      }, function (data) {
+        cb(data === 'ok');
+      });
     });
   });
+  function checkCoupons(coupons, cb) {
+    if (!coupons) return cb(true);
+    $.get('../checkcoupons.php', {
+      coupons: coupons
+    }, function(data) {
+      cb(data === 'yes');
+    });
+  }
 }
 function parseItem(dItem) {
   if (!dItem) {

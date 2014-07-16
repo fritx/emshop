@@ -23,7 +23,9 @@ function showForm(info) {
       {
         title: '付款人电话',
         key: 'payer_tel'
-      },
+      }
+    ],
+    [
       {
         title: '付款方式',
         key: 'pay_way',
@@ -31,6 +33,10 @@ function showForm(info) {
         list: {
           '货到付款': 'offline'
         }
+      },
+      {
+        title: '使用优惠券',
+        key: 'coupons'
       }
     ],
     [
@@ -111,6 +117,9 @@ function submitOrder() {
     saveOrder(oItems, info, function (ok) {
       if (!ok) {
         toggleButton(true);
+        if (ok === 0) {
+          return notify('优惠券码不正确', true);
+        }
         return notify('部分商品仍在补货中，可以先购买其他的~', true);
       }
       emptyCurrOrder(function () {

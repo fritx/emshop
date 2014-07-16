@@ -1,33 +1,34 @@
+mixin input(field)
+  if field.type === 'select'
+     select(name=field.key)
+       each v, k in field.list
+         option(value=v,
+         selected=(v===field.value)) #{k}
+  else if field.type === 'radio'
+    .radio-set
+      - field.value = field.value || ''
+      each v, k in field.list
+        label.radio
+          input(type='radio', name=field.key,
+          value=v, checked=(v===field.value))
+          div #{k}
+   else
+     input(type='text', name=field.key,
+     value=field.value||'', readonly=field.readonly)
+
 form.pure-form
   fieldset.profile-box
     each field in fields[0]
-      .pure-g
-        .pure-u-2-5
-          label.label= field.title
-        .pure-u-3-5
-          if field.type === 'select'
-            select(name=field.key)
-              each v, k in field.list
-                option(value=v,
-                selected=(v===field.value)) #{k}
-          else if field.type === 'radio'
-            .radio-set
-              - field.value = field.value || ''
-              each v, k in field.list
-                label.radio
-                  input(type='radio', name=field.key,
-                  value=v, checked=(v===field.value))
-                  div #{k}
-          else
-            input(type='text', name=field.key,
-            value=field.value||'', readonly=field.readonly)
+      +input(field)
   .pure-g.pay-box
     .pure-u-1
       .cost-box.text-center
         span.trailing 合计 :
         span.price ￥#{cost.toFixed(1)}
-  fieldset.pure-skin-pink.submit-box
     each field in fields[1]
+      +input(field)
+  fieldset.pure-skin-pink.submit-box
+    each field in fields[2]
       input(type='text', name=field.key,
       placeholder=field.placeholder, value=field.value||'')
     button.btn.primary.submit-btn(

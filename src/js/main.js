@@ -18,9 +18,10 @@ function searchToParams(search) {
 }
 
 function paramsToSearch(params) {
-  return _.reduce(params, function (search, val, key) {
+  return '?' + _.reduce(params, function (str, val, key) {
+    if (val == null) return str;
     var arr = _.isArray(val) ? val : [val];
-    return search + (search ? '&' : '?') +
+    return str + (str ? '&' : '') +
       _.reduce(arr, function (segs, v) {
         return segs + (segs ? '&' : '') + key + '=' + encodeURIComponent(v);
       }, '');
@@ -75,7 +76,10 @@ function link(href, _params) {
   var newParams = searchToParams(search);
   _.extend(newParams, _params);
   // prepend area
-  newParams = _.extend({ area: area.id }, newParams);
+  newParams = _.extend({
+    area: area && area.id,
+    consumerOPID: opid
+  }, newParams);
   location.href = path + paramsToSearch(newParams);
 }
 function notify(msg, back) {
@@ -152,7 +156,7 @@ function getVal($el) {
 
 /* init */
 var params = searchToParams();
-var area;
+var area, opid;
 
 function initPage(cb) {
   if (!$().text || !store.enabled) {
@@ -170,6 +174,13 @@ function initPage(cb) {
       link($(this).attr('href'));
     }
   });
+
+  opid = params.consumerOPID || store.get('wx_opid');
+  if (!params.consumerOPID) {
+    opid = opid || 'consumerOPID';
+    link(location.href);
+  }
+  store.set('wx_opid', opid);
 
   fetchAreasList(function (areas) {
     fetchOrderInfo(function(info) {
