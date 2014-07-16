@@ -34,6 +34,7 @@ gulp.task 'pack:js', ->
       'bower_components/zeptojs/src/selector.js'
       'bower_components/alertify.js/lib/alertify.js'
       'bower_components/jade/runtime.js'
+      'bower_components/js-md5/js/md5.js'
       # fake jquery for some deps
       'src/js/as-jquery.js'
       'bower_components/jquery.lazyload/jquery.lazyload.js'

@@ -72,24 +72,6 @@
     "status": "OFFLINE_WAIT_SELLER_SEND_GOODS"
   },
   {
-    "id": 21,
-    "name": "林亮",
-    "tel": "18600000000",
-    "address": "深圳 南山区 高新园 科技南",
-    "message": "",
-    "date": "2014-07-12 08:30:00",
-    "cost": 100.8,
-    "items": [
-      {
-        "id": 1,
-        "price": 50.4,
-        "num": 2
-      }
-    ],
-    "way": "offline",
-    "status": "OFFLINE_CANCEL_ORDER_BEFORE_SEND"
-  },
-  {
     "id": 31,
     "name": "林亮",
     "tel": "18600000000",

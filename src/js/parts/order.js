@@ -118,7 +118,7 @@ function submitOrder() {
       if (!ok) {
         toggleButton(true);
         if (ok === 0) {
-          return notify('优惠券码不正确', true);
+          return notify('优惠券码不正确');
         }
         return notify('部分商品仍在补货中，可以先购买其他的~', true);
       }

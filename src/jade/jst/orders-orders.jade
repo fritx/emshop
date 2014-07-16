@@ -29,8 +29,8 @@ ul.pure-g
               .pure-u-1
                 .action-box.pull-right
                   case order.status
-                    when 'OFFLINE_WAIT_SELLER_SEND_GOOD'
-                      button(data-action="OFFLINE_CANCEL_ORDER_BEFORE_SEND") 退货
+                    when 'OFFLINE_WAIT_SELLER_SEND_GOODS'
+                      button(data-action="OFFLINE_CANCEL_ORDER_BEFORE_SEND")  取消订单
                     when 'OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY'
                       button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_MONEY") 确认并付款
                       button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_GOODS") 退货

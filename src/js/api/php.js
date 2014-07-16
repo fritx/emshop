@@ -173,10 +173,8 @@ function checkAllOnSale(oItems, cb) {
 }
 function saveOrder(oItems, info, cb) {
   saveOrderInfo(info, function () {
-    checkCoupons(coupons, function(ok) {
-      if (!ok) {
-        return cb(0);
-      }
+    checkCoupons(info.coupons, function(ok) {
+      if (!ok) return cb(0);
       $.post('../orderaction.php?action=order', {
         consumer_name: info.signer_name,
         telephone: info.signer_tel,
@@ -256,3 +254,16 @@ function actionOrder(id, action, cb) {
     cb(data === 'ok');
   });
 }
+function validate(cb) {
+  $.get('../validation.php', function(data) {
+    data = JSON.parse(data);
+    if (data.status === 'yes') return cb(true);
+    $.get('../validation.php', {
+      vcode: _encrypt(data.randcode)
+    }, function(data) {
+      data = JSON.parse(data);
+      return cb(data.status === 'yes');
+    });
+  });
+}
+function _encrypt(str) {}
