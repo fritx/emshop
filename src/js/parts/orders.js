@@ -4,7 +4,7 @@ function listOrders(orders) {
       OFFLINE_WAIT_SELLER_SEND_GOODS: '等待卖家发货',
       OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY: '等待买家收货付款',
       OFFLINE_WAIT_SELLER_CONFIRM_MONEY: '等待卖家确认付款',
-      OFFLINE_WAIT_SELLER_AGREE_AFTER_SENT: '等待卖家同意退货',
+      OFFLINE_CANCEL_ORDER_BEFORE_SEND: '等待卖家同意退货',
       OFFLINE_WAIT_BUYER_RETURN_GOODS: '等待买家退货',
       OFFLINE_WAIT_SELLER_CONFIRM_GOODS: '等待卖家确认收货',
       OFFLINE_REFUND_FINISHED: '已退货',
@@ -21,12 +21,13 @@ function listOrders(orders) {
     .on('click', function() {
       var $btn = $(this);
       var action = $btn.attr('data-action');
-      var id = +$btn.closest('.order-box').attr('data-id');
-      actionOrder(id, action, function(ok) {
-        if (!ok) {
-          return notify('操作失败');
-        }
-        notify('操作成功', 0);
+      ask('确定要' + $btn.text() + '吗？', function(ok) {
+        if (!ok) return;
+        var id = +$btn.closest('.order-box').attr('data-id');
+        actionOrder(id, action, function(ok) {
+          if (!ok) return notify('操作失败');
+          notify('操作成功', 0);
+        });
       });
     });
 }

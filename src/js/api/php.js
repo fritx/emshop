@@ -145,10 +145,9 @@ function fetchOrdersList(cb) {
         var xOrder = {
           id: +order.id,
           area: order.area,
-          signer_name: order.consumer_name,
-          signer_tel: order.telephone,
-          signer_addr: order.address,
-          payer_tel: order.payer_telephone,
+          name: order.consumer_name,
+          tel: order.telephone,
+          address: order.address,
           pay_way: order.payway,
           message: order.message,
           items: xItems,

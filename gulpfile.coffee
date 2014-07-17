@@ -173,7 +173,8 @@ gulp.task 'dev', ->
   gulp.watch 'src/less/**', ['css']
   gulp.watch 'src/js/**', ['js']
   gulp.watch 'dist/**'
-  .on 'change', livereload.changed
+  .on 'change', ->
+    setTimeout livereload.changed, 500
   livereload.listen()
   require './server'
 

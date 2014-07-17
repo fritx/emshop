@@ -77,8 +77,7 @@ function link(href, _params) {
   _.extend(newParams, _params);
   // prepend area
   newParams = _.extend({
-    area: area && area.id,
-    consumerOPID: opid
+    area: area && area.id
   }, newParams);
   location.href = path + paramsToSearch(newParams);
 }
@@ -176,11 +175,13 @@ function initPage(cb) {
   });
 
   opid = params.consumerOPID || store.get('wx_opid');
-  if (!params.consumerOPID) {
+  if (!opid) {
     opid = opid || 'consumerOPID';
-    link(location.href);
   }
   store.set('wx_opid', opid);
+  if (params.consumerOPID) {
+    link(location.href, { consumerOPID: null })
+  }
 
   fetchAreasList(function (areas) {
     fetchOrderInfo(function(info) {
@@ -190,9 +191,7 @@ function initPage(cb) {
         notify('你的地区信息不对啊!');
         throw new Error('Invalid area.');
       }
-      if (!params.area) {
-        link(location.href);
-      }
+      if (!params.area) link(location.href);
 
       saveArea(area, function (ok) {
         if (!ok) {

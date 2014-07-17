@@ -4,10 +4,20 @@ ul.pure-g
       .order-box(data-id=order.id)
         include orders-items-
         .pure-g.order-desc
+          .info-box.pure-u-1
+            div
+              span.trailing 收货人 :&nbsp;
+              span= order.name
+            div
+              span.trailing 电话 :&nbsp;
+              span= order.tel
+            div
+              span.trailing 地址 :&nbsp;
+              span= order.address
           if order.message
             .pure-u-1
               .message-box
-                span.trailing 备 注 :&nbsp;
+                span.trailing 备注 :&nbsp;
                 span.message= order.message
           .pure-u-1-2
             .cost-box
@@ -23,14 +33,13 @@ ul.pure-g
             when 'OFFLINE_WAIT_BUYER_RETURN_GOODS'
             when 'OFFLINE_WAIT_SELLER_CONFIRM_GOODS'
             when 'OFFLINE_CANCEL_ORDER_BEFORE_SEND'
-            when 'OFFLINE_WAIT_SELLER_AGREE_AFTER_SENT'
               break
             default
               .pure-u-1
                 .action-box.pull-right
                   case order.status
                     when 'OFFLINE_WAIT_SELLER_SEND_GOODS'
-                      button(data-action="OFFLINE_CANCEL_ORDER_BEFORE_SEND")  取消订单
+                      button(data-action="OFFLINE_CANCEL_ORDER_BEFORE_SEND") 取消订单
                     when 'OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY'
-                      button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_MONEY") 确认并付款
+                      button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_MONEY") 确认收货
                       button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_GOODS") 退货

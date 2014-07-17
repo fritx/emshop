@@ -87,7 +87,7 @@
       }
     ],
     "way": "offline",
-    "status": "OFFLINE_WAIT_SELLER_AGREE_AFTER_SENT"
+    "status": "OFFLINE_CANCEL_ORDER_BEFORE_SEND"
   },
   {
     "id": 51,
