@@ -1,11 +1,10 @@
 {
   "name": "emshop",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "git@github.com:fritx/emshop.git"
   },
-  "dependencies": {},
   "devDependencies": {
     "body-parser": "^1.4.3",
     "coffee-script": "^1.7.1",
@@ -21,6 +20,7 @@
     "gulp-modify": "0.0.4",
     "gulp-rename": "^1.2.0",
     "gulp-rimraf": "^0.1.0",
-    "gulp-uglify": "^0.3.1"
+    "gulp-uglify": "^0.3.1",
+    "underscore": "^1.6.0"
   }
 }

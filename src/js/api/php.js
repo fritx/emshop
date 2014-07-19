@@ -172,30 +172,25 @@ function checkAllOnSale(oItems, cb) {
 }
 function saveOrder(oItems, info, cb) {
   saveOrderInfo(info, function () {
-    checkCoupons(info.coupons, function(ok) {
-      if (!ok) return cb(0);
-      $.post('../orderaction.php?action=order', {
-        consumer_name: info.signer_name,
-        telephone: info.signer_tel,
-        address: info.signer_addr,
-        payer_telephone: info.payer_tel,
-        payway: info.pay_way,
-        message: info.message,
-        products_id: _.pluck(oItems, 'id').join(','),
-        products_amounts: _.pluck(oItems, 'num').join(',')
-      }, function (data) {
-        cb(data === 'ok');
+    validate(function(ok) {
+      if (!ok) return cb(false);
+      checkCoupon(info.coupon, function(ok) {
+        if (!ok) return cb(0);
+        $.post('../orderaction.php?action=order', {
+          consumer_name: info.signer_name,
+          telephone: info.signer_tel,
+          address: info.signer_addr,
+          payer_telephone: info.payer_tel,
+          payway: info.pay_way,
+          message: info.message,
+          products_id: _.pluck(oItems, 'id').join(','),
+          products_amounts: _.pluck(oItems, 'num').join(',')
+        }, function (data) {
+          cb(data === 'ok');
+        });
       });
     });
   });
-  function checkCoupons(coupons, cb) {
-    if (!coupons) return cb(true);
-    $.get('../checkcoupons.php', {
-      coupons: coupons
-    }, function(data) {
-      cb(data === 'yes');
-    });
-  }
 }
 function parseItem(dItem) {
   if (!dItem) {
@@ -228,14 +223,18 @@ function fetchAreasList(cb) {
     }));
   });
 }
-function saveArea(area, cb) {
+function saveData(data, cb) {
   fetchOrderInfo(function(info) {
-    info.area = area.title;
+    info.area = data.area.title;
     saveOrderInfo(info, function() {
       $.post('../setarea.php', {
-        area_id: area.id
+        area_id: data.area.id
       }, function (area) {
-        cb(!!area);
+        $.post('../setconsumer.php', {
+          consumerOPID: data.opid
+        }, function () {
+          cb(!!area);
+        });
       });
     });
   });
@@ -247,17 +246,31 @@ function setDormsList(cb) {
   });
 }
 function actionOrder(id, action, cb) {
-  $.post('../orderaction.php?action=' + action, {
-    order_id: id
+  validate(function(ok) {
+    if (!ok) return cb(false);
+    $.post('../orderaction.php?action=' + action, {
+      order_id: id
+    }, function(data) {
+      cb(data === 'ok');
+    });
+  });
+}
+function checkCoupon(code, cb) {
+  $.get('../checkcoupons.php', {
+    coupons: coupon
   }, function(data) {
-    cb(data === 'ok');
+    data = JSON.parse(data)
+    cb({
+      times: +data.unused_time,
+      message: data.message
+    });
   });
 }
 function validate(cb) {
-  $.get('../validation.php', function(data) {
+  $.get('../verification.php', function(data) {
     data = JSON.parse(data);
     if (data.status === 'yes') return cb(true);
-    $.get('../validation.php', {
+    $.get('../verification.php', {
       vcode: _encrypt(data.randcode)
     }, function(data) {
       data = JSON.parse(data);

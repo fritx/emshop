@@ -36,7 +36,7 @@ function showForm(info) {
       },
       {
         title: '使用优惠券',
-        key: 'coupons'
+        key: 'coupon'
       }
     ],
     [
@@ -106,21 +106,31 @@ function submitOrder() {
   ], function (key) {
     return info[key] === '';
   })) {
-    toggleButton(true);
-    return notify('订单填写不完整');
+    notify('订单填写不完整');
+    return toggleButton(true);
   }
+  if (!info.coupon) return confirmOrder(oItems, info);
+  checkCoupon(info.coupon, function(data) {
+    if (!data) {
+      notify('优惠券码不正确');
+      return toggleButton(true);
+    }
+    notify(data.message, function() {
+      if (data.times < 1) return toggleButton(true);
+      confirmOrder(oItems, info);
+    });
+  });
+}
+
+function confirmOrder(oItems, info) {
   ask('确定提交订单?', function (ok) {
     if (!ok) {
-      toggleButton(true);
-      return;
+      return toggleButton(true);
     }
     saveOrder(oItems, info, function (ok) {
       if (!ok) {
         toggleButton(true);
-        if (ok === 0) {
-          return notify('优惠券码不正确');
-        }
-        return notify('部分商品仍在补货中，可以先购买其他的~', true);
+        return notify('部分商品仍在补货中，可以先购买其他的~');
       }
       emptyCurrOrder(function () {
         notify([
@@ -135,6 +145,7 @@ function submitOrder() {
 /* variables */
 var fields, _fields;
 var oItems;
+var $coupon;
 
 initPage(function () {
   $(function () {
@@ -153,6 +164,7 @@ initPage(function () {
         setDormsList(function () {
           /* list items */
           showForm(info);
+          $coupon = $('[name="coupon"]');
 
           /* ready */
           loadReady();

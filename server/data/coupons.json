@@ -1,0 +1,17 @@
+[
+  {
+    "code": "abc123",
+    "times": 2,
+    "title": "100元代金券"
+  },
+  {
+    "code": "abc321",
+    "times": 1,
+    "title": "20元代金券"
+  },
+  {
+    "code": "abc000",
+    "times": 0,
+    "title": "50元代金券"
+  }
+]

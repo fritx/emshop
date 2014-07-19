@@ -91,6 +91,8 @@ function notify(msg, back) {
       location.reload();
     } else if (_.isString(back)) {
       link(back);
+    } else if (_.isFunction(back)) {
+      back();
     }
   });
 }
@@ -166,6 +168,7 @@ function initPage(cb) {
   store.set('cart_items', store.get('cart_items') || []);
   store.set('curr_order_items', store.get('curr_order_items') || []);
   store.set('order_info', store.get('order_info') || {});
+  store.set('wx_opid', store.get('wx_opid') || 'consumerOPID');
 
   $(document).delegate('[href]', 'click', function (e) {
     if (!(e.ctrlKey || e.shiftKey || e.metaKey)) {
@@ -175,12 +178,9 @@ function initPage(cb) {
   });
 
   opid = params.consumerOPID || store.get('wx_opid');
-  if (!opid) {
-    opid = opid || 'consumerOPID';
-  }
   store.set('wx_opid', opid);
   if (params.consumerOPID) {
-    link(location.href, { consumerOPID: null })
+    link(location.href, { consumerOPID: null });
   }
 
   fetchAreasList(function (areas) {
@@ -188,14 +188,16 @@ function initPage(cb) {
       area = params.area ? _.findWhere(areas, { id: +params.area }) :
         _.findWhere(areas, { title: info.area }) || areas[0];
       if (!area) {
-        notify('你的地区信息不对啊!');
-        throw new Error('Invalid area.');
+        notify('你的地区信息为空啊!');
+        throw new Error('Empty area.');
       }
       if (!params.area) link(location.href);
 
-      saveArea(area, function (ok) {
+      saveData({
+        area: area, opid: opid
+      }, function (ok) {
         if (!ok) {
-          notify('你的地区信息不对啊!');
+          notify('你的地区信息不正确啊!');
           throw new Error('Invalid area.');
         }
 

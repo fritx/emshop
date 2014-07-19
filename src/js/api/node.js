@@ -140,9 +140,9 @@ function fetchAreasList(cb) {
     cb(shop.areas);
   });
 }
-function saveArea(area, cb) {
+function saveData(data, cb) {
   fetchOrderInfo(function(info) {
-    info.area = area.title;
+    info.area = data.area.title;
     saveOrderInfo(info, function() {
       cb(true);
     });
@@ -157,5 +157,15 @@ function actionOrder(id, action, cb) {
     action: action
   }, function(data) {
     cb(data === 'ok');
+  });
+}
+function checkCoupon(code, cb) {
+  $.get('api/check_coupon', {
+    code: code
+  }, function(data) {
+    if (!data) return cb(false);
+    data.message = data.title +
+      '，还可以使用' + data.times + '次';
+    cb(data);
   });
 }

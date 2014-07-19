@@ -1,4 +1,5 @@
 path = require 'path'
+_ = require 'underscore'
 express = require 'express'
 bodyParser = require 'body-parser'
 app = express()
@@ -22,6 +23,7 @@ app.use '/content', express.static(
 store =
   address: require './data/address'
   orders: require './data/orders'
+  coupons: require './data/coupons'
 
 app.get '/api/fetch_shop', (req, res)->
   res.json require './data/shop'
@@ -43,6 +45,11 @@ app.post '/api/action_order', (req, res)->
   console.log req.body
   # lack of logic
   res.send 'ok'
+
+app.get '/api/check_coupon', (req, res)->
+  code = req.query['code']
+  coupon = _.findWhere store.coupons, { code }
+  res.send coupon or ''
 
 # listen
 
