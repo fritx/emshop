@@ -124,8 +124,9 @@ gulp.task 'html', ['html:parts', 'html:index']
 
 gulp.task 'js:site', ->
   gulp.src [
-    "src/js/api/#{apiType}.js"
     'src/js/main.js'
+    "src/js/api/#{apiType}.js"
+    'src/js/_encrypt.js'
   ]
   .pipe concat '_site.js', newLine: ';'
   .pipe uglify()

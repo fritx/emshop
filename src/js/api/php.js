@@ -183,6 +183,7 @@ function saveOrder(oItems, info, cb) {
           payer_telephone: info.payer_tel,
           payway: info.pay_way,
           message: info.message,
+          coupons: info.coupon,
           products_id: _.pluck(oItems, 'id').join(','),
           products_amounts: _.pluck(oItems, 'num').join(',')
         }, function (data) {
@@ -257,7 +258,7 @@ function actionOrder(id, action, cb) {
 }
 function checkCoupon(code, cb) {
   $.get('../checkcoupons.php', {
-    coupons: coupon
+    coupons: code
   }, function(data) {
     data = JSON.parse(data)
     cb({

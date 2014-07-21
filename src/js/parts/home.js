@@ -17,17 +17,31 @@ function listBrands() {
     .append(
       JST['home-brands']({ brands: brands })
     );
+  $('#tags-div').find('.menu')
+    .append(
+      JST['home-tags']({ tags: tags })
+    );
 }
 
-function showBrands() {
+function toggleBrands() {
   if (brands.length <= 0) {
     return notify('暂时没有品牌');
   }
   $('#brands-btn').toggleClass('active');
   $('#brands-div').toggleClass('none');
+  $('#tags-div').addClass('none');
+}
+function toggleTags() {
+  if (tags.length <= 0) {
+    return notify('暂时没有分类');
+  }
+  $('#tags-btn').toggleClass('active');
+  $('#tags-div').toggleClass('none');
+  $('#brands-div').addClass('none');
 }
 
 var brands;
+var tags;
 
 initPage(function () {
   $(function () {
@@ -40,11 +54,8 @@ initPage(function () {
 
     /* load shop */
     fetchShop(function (shop) {
-      brands = _.map(shop.brands, function (brand) {
-        return {
-          name: brand
-        };
-      });
+      brands = shop.brands;
+      tags = shop.tags;
 
       /* display banner */
       showBanner(shop.banner);

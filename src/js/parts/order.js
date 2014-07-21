@@ -145,7 +145,6 @@ function confirmOrder(oItems, info) {
 /* variables */
 var fields, _fields;
 var oItems;
-var $coupon;
 
 initPage(function () {
   $(function () {
@@ -164,7 +163,6 @@ initPage(function () {
         setDormsList(function () {
           /* list items */
           showForm(info);
-          $coupon = $('[name="coupon"]');
 
           /* ready */
           loadReady();
