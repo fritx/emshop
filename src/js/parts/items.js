@@ -57,7 +57,7 @@ initPage(function () {
     var title = _.compact(
       [].concat(brand, tags)
     ).join('+') || shortTitle;
-    setTitle(title + ' - Great Me', shortTitle);
+    setTitle(title + ' - ' + siteTitle, shortTitle);
 
     /* load items */
     fetchProductsList({

@@ -65,7 +65,7 @@ initPage(function () {
       }
 
       /* title */
-      setTitle(item.title + ' - Great Me', '宝贝详情');
+      setTitle(item.title + ' - ' + siteTitle, '宝贝详情');
 
       /* extend item */
       calcPrice(item);

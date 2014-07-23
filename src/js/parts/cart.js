@@ -93,7 +93,7 @@ var xItems;
 initPage(function () {
   $(function () {
     /* title */
-    setTitle('购物车 - Great Me', '购物车');
+    setTitle('购物车 - ' + siteTitle, '购物车');
 
     /* active */
     $('#footer').find('.fa-shopping-cart').closest('a')

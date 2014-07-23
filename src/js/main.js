@@ -156,6 +156,7 @@ function getVal($el) {
 }
 
 /* init */
+var siteTitle = $('title').text();
 var params = searchToParams();
 var area, opid;
 

@@ -37,7 +37,7 @@ var $orders = $('#orders-div');
 initPage(function () {
   $(function () {
     /* title */
-    setTitle('我的订单 - Great Me', '我的订单');
+    setTitle('我的订单 - ' + siteTitle, '我的订单');
 
     /* active */
     $('#footer').find('.fa-user').closest('a')

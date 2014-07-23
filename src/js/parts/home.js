@@ -46,7 +46,7 @@ var tags;
 initPage(function () {
   $(function () {
     /* title */
-    setTitle('Great Me');
+    setTitle(siteTitle);
 
     /* active */
     $('#footer').find('.fa-home').closest('a')

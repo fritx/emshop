@@ -149,7 +149,7 @@ var oItems;
 initPage(function () {
   $(function () {
     /* title */
-    setTitle('确认下单 - Great Me', '确认下单');
+    setTitle('确认下单 - ' + siteTitle, '确认下单');
 
     /* load order */
     fetchCurrOrder(function (_oItems) {

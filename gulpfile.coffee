@@ -177,6 +177,6 @@ gulp.task 'dev', ->
   .on 'change', ->
     setTimeout livereload.changed, 500
   livereload.listen()
-  require './server'
+  require './server/app'
 
 gulp.task 'default', ['client']
