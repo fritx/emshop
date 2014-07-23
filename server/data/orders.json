@@ -6,7 +6,9 @@
     "address": "江门 五邑大学 16-308 1号床",
     "message": "送到床上来",
     "date": "2014-07-11 21:10:30",
+    "price": 120.8,
     "cost": 100.8,
+    "discount": "20元优惠券",
     "items": [
       {
         "id": 1,
@@ -15,6 +17,9 @@
       }
     ],
     "way": "offline",
+    "express": [
+      "abc3211234567"
+    ],
     "status": "OFFLINE_TRADE_FINISHED"
   },
   {
@@ -24,7 +29,9 @@
     "address": "深圳 南山区 高新园 科技南",
     "message": "",
     "date": "2014-07-12 08:30:00",
+    "price": 120.8,
     "cost": 100.8,
+    "discount": "20元优惠券",
     "items": [
       {
         "id": 1,
@@ -33,6 +40,9 @@
       }
     ],
     "way": "offline",
+    "express": [
+      "abc3211234567"
+    ],
     "status": "OFFLINE_WAIT_SELLER_CONFIRM_MONEY"
   },
   {
@@ -42,7 +52,9 @@
     "address": "深圳 南山区 高新园 科技南",
     "message": "",
     "date": "2014-07-12 08:30:00",
+    "price": 120.8,
     "cost": 100.8,
+    "discount": "20元优惠券",
     "items": [
       {
         "id": 1,
@@ -51,6 +63,9 @@
       }
     ],
     "way": "offline",
+    "express": [
+      "abc3211234567"
+    ],
     "status": "OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY"
   },
   {
@@ -60,7 +75,9 @@
     "address": "江门 五邑大学 16-308 1号床",
     "message": "不要添加剂",
     "date": "2014-07-13 08:30:00",
+    "price": 120.8,
     "cost": 100.8,
+    "discount": "20元优惠券",
     "items": [
       {
         "id": 1,
@@ -69,6 +86,7 @@
       }
     ],
     "way": "offline",
+    "express": [],
     "status": "OFFLINE_WAIT_SELLER_SEND_GOODS"
   },
   {
@@ -78,7 +96,9 @@
     "address": "深圳 南山区 高新园 科技南",
     "message": "",
     "date": "2014-07-12 08:30:00",
+    "price": 120.8,
     "cost": 100.8,
+    "discount": "20元优惠券",
     "items": [
       {
         "id": 1,
@@ -87,6 +107,7 @@
       }
     ],
     "way": "offline",
+    "express": [],
     "status": "OFFLINE_CANCEL_ORDER_BEFORE_SEND"
   },
   {
@@ -96,7 +117,9 @@
     "address": "深圳 南山区 高新园 科技南",
     "message": "",
     "date": "2014-07-12 08:30:00",
+    "price": 120.8,
     "cost": 100.8,
+    "discount": "20元优惠券",
     "items": [
       {
         "id": 1,
@@ -105,6 +128,10 @@
       }
     ],
     "way": "offline",
+    "express": [
+      "abc3211234567",
+      "def0001234567"
+    ],
     "status": "OFFLINE_WAIT_SELLER_CONFIRM_GOODS"
   },
   {
@@ -114,7 +141,9 @@
     "address": "深圳 南山区 高新园 科技南",
     "message": "",
     "date": "2014-07-12 08:30:00",
+    "price": 120.8,
     "cost": 100.8,
+    "discount": "20元优惠券",
     "items": [
       {
         "id": 1,
@@ -123,6 +152,9 @@
       }
     ],
     "way": "offline",
+    "express": [
+      "abc3211234567"
+    ],
     "status": "OFFLINE_WAIT_BUYER_RETURN_GOODS"
   },
   {
@@ -132,7 +164,9 @@
     "address": "深圳 南山区 高新园 科技南",
     "message": "",
     "date": "2014-07-12 08:30:00",
+    "price": 120.8,
     "cost": 100.8,
+    "discount": "20元优惠券",
     "items": [
       {
         "id": 1,
@@ -141,6 +175,10 @@
       }
     ],
     "way": "offline",
+    "express": [
+      "abc3211234567",
+      "def0001234567"
+    ],
     "status": "OFFLINE_REFUND_FINISHED"
   }
 ]
