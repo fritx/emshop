@@ -1,8 +1,6 @@
 #nav
   .filter_nav.pure-g
-    - key = '日用'
-    a.filter_btn.pure-u-1-4(href='items/?tags=#{key}')= key
-    - key = '夜用'
-    a.filter_btn.pure-u-1-4(href='items/?tags=#{key}')= key
+    a.filter_btn.pure-u-1-4(href='items/?orderBy=!id') 新品
+    a.filter_btn.pure-u-1-4(href='items/?orderBy=!sales') 热销
     a.filter_btn.pure-u-1-4(onclick='toggleTags()') 分类
     a.filter_btn.pure-u-1-4(onclick='toggleBrands()') 品牌

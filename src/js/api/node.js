@@ -36,6 +36,7 @@ function fetchProductsList(opt, cb) {
     // sort items
     if (orderKey != null) {
       var field = ({
+        'id': 'id',
         'sales': 'sales',
         'price': '_price'
       })[orderKey];

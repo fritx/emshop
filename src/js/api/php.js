@@ -34,7 +34,8 @@ function fetchProductsList(opt, cb) {
     keyword = opt.keyword,
     orderVal = opt.orderVal, orderKey = opt.orderKey;
   var o = {}, url;
-  o.way = ({
+  o.way = o.way || ({
+    'id': 'id',
     'sales': 'sales',
     'price': 'low_price'
   })[orderKey] + '_' + ({
