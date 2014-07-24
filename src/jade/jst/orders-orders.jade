@@ -4,6 +4,11 @@ ul.pure-g
       .order-box(data-id=order.id)
         include orders-items-
         .pure-g.order-desc
+          if order.message
+            .pure-u-1
+              .message-box
+                span.trailing 备注 :&nbsp;
+                span.message= order.message
           .info-box.pure-u-1
             div
               span.trailing 收货人 :&nbsp;
@@ -14,18 +19,28 @@ ul.pure-g
             div
               span.trailing 地址 :&nbsp;
               span= order.address
-          if order.message
-            .pure-u-1
-              .message-box
-                span.trailing 备注 :&nbsp;
-                span.message= order.message
+            div
+              - _pay_way = ({offline:'货到付款',online:'在线支付'})[order.pay_way]
+              span.trailing 付款方式 :&nbsp;
+              span= _pay_way
+            if order.express.length
+              div
+                span.trailing 快递单号 :&nbsp;
+                span= order.express.join(', ')
+            if order.discount
+              div
+                span.trailing 已使用 :&nbsp;
+                span= order.discount
+              div
+                span.trailing 原 价 :&nbsp;
+                span ￥#{order.price.toFixed(1)}
           .pure-u-1-2
             .cost-box
               span.trailing 实付款 :
               span.price ￥#{order.cost.toFixed(1)}
           .pure-u-1-2
             .status-box
-              span.status= order._status
+              span= order._status
           case order.status
             when 'OFFLINE_TRADE_FINISHED'
             when 'OFFLINE_WAIT_SELLER_CONFIRM_MONEY'

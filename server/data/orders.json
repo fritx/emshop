@@ -16,7 +16,7 @@
         "num": 2
       }
     ],
-    "way": "offline",
+    "pay_way": "offline",
     "express": [
       "abc3211234567"
     ],
@@ -39,7 +39,7 @@
         "num": 2
       }
     ],
-    "way": "offline",
+    "pay_way": "offline",
     "express": [
       "abc3211234567"
     ],
@@ -62,7 +62,7 @@
         "num": 2
       }
     ],
-    "way": "offline",
+    "pay_way": "offline",
     "express": [
       "abc3211234567"
     ],
@@ -85,7 +85,7 @@
         "num": 2
       }
     ],
-    "way": "offline",
+    "pay_way": "offline",
     "express": [],
     "status": "OFFLINE_WAIT_SELLER_SEND_GOODS"
   },
@@ -106,7 +106,7 @@
         "num": 2
       }
     ],
-    "way": "offline",
+    "pay_way": "offline",
     "express": [],
     "status": "OFFLINE_CANCEL_ORDER_BEFORE_SEND"
   },
@@ -127,7 +127,7 @@
         "num": 2
       }
     ],
-    "way": "offline",
+    "pay_way": "offline",
     "express": [
       "abc3211234567",
       "def0001234567"
@@ -151,7 +151,7 @@
         "num": 2
       }
     ],
-    "way": "offline",
+    "pay_way": "offline",
     "express": [
       "abc3211234567"
     ],
@@ -174,7 +174,7 @@
         "num": 2
       }
     ],
-    "way": "offline",
+    "pay_way": "offline",
     "express": [
       "abc3211234567",
       "def0001234567"

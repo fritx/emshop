@@ -149,10 +149,13 @@ function fetchOrdersList(cb) {
           name: order.consumer_name,
           tel: order.telephone,
           address: order.address,
-          pay_way: order.payway,
+          payway: order.pay_way,
           message: order.message,
           items: xItems,
-          cost: +order.price,
+          cost: +order.discount_price,
+          price: +order.price,
+          discount: order.coupons_message,
+          express: [order.expressno],
           status: order.pStatus
         };
         next(null, xOrder);
