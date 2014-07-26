@@ -27,9 +27,9 @@
           span.label 特　价
           span.price ￥#{item.promotingPrice.toFixed(1)}
       .line
-        span.label 特惠价
+        span.label 价　格
         span.price ￥#{item.shopPrice.toFixed(1)}
 include detail-purchase-
 .detail-box
   //- use html
-  p!= item.description.trim()
+  div!= item.description

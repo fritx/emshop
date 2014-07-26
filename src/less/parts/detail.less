@@ -67,8 +67,17 @@
   .detail-box {
     border-top: 1px dashed @form-border-color;
     margin: 14px 0 6px;
-    p {
+    >div {
       margin: 14px 0 0;
+      p {
+        margin: 0 0 8px;
+      }
+      .lazy-box {
+        &.unloaded {
+          overflow-y: hidden;
+          height: 100px;
+        }
+      }
     }
   }
 }

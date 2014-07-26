@@ -70,6 +70,15 @@ initPage(function () {
       /* extend item */
       calcPrice(item);
 
+      item.description = (function(desc) {
+        desc = desc.trim();
+        desc = desc.replace(
+          /<img src="([^"]*)"([^>]*)>/g,
+          '<div class="lazy-box unloaded"><img class="lazy" data-original="$1"$2></div>'
+        );
+        return desc;
+      })(item.description);
+
       /* display item */
       showItem(item);
 

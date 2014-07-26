@@ -29,7 +29,7 @@ ul.pure-g
                 span= order.express.join(', ')
             if order.discount
               div
-                span.trailing 已使用 :&nbsp;
+                span.trailing 优惠信息 :&nbsp;
                 span= order.discount
               div
                 span.trailing 原 价 :&nbsp;
@@ -41,20 +41,4 @@ ul.pure-g
           .pure-u-1-2
             .status-box
               span= order._status
-          case order.status
-            when 'OFFLINE_TRADE_FINISHED'
-            when 'OFFLINE_WAIT_SELLER_CONFIRM_MONEY'
-            when 'OFFLINE_REFUND_FINISHED'
-            when 'OFFLINE_WAIT_BUYER_RETURN_GOODS'
-            when 'OFFLINE_WAIT_SELLER_CONFIRM_GOODS'
-            when 'OFFLINE_CANCEL_ORDER_BEFORE_SEND'
-              break
-            default
-              .pure-u-1
-                .action-box.pull-right
-                  case order.status
-                    when 'OFFLINE_WAIT_SELLER_SEND_GOODS'
-                      button(data-action="OFFLINE_CANCEL_ORDER_BEFORE_SEND") 取消订单
-                    when 'OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY'
-                      button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_MONEY") 确认收货
-                      button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_GOODS") 退货
+          include orders-order-action-
