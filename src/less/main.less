@@ -181,7 +181,7 @@ button {
   margin: 0 auto;
   > .content-inner {
     margin-top: 48px;
-    margin-bottom: 46px;
+    margin-bottom: 45px;
     padding: 0 10px 12px;
   }
 }
@@ -214,11 +214,18 @@ button {
       display: block;
       padding: 5px 0;
       text-align: center;
+      text-decoration: none;
       &:hover, &:focus {
         background-color: @footer-btn-bgcolor-hover;
       }
       &.active {
         background-color: @footer-btn-bgcolor-active;
+      }
+      i {
+        font-size: 140%;
+      }
+      div {
+        font-size: 60%;
       }
     }
   }
