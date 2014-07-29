@@ -31,6 +31,7 @@ function showForm(info) {
         key: 'pay_way',
         type: 'select',
         list: {
+          '在线支付': 'online',
           '货到付款': 'offline'
         }
       },

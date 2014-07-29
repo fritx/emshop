@@ -253,6 +253,9 @@ function setDormsList(cb) {
 function actionOrder(id, action, cb) {
   validate(function(ok) {
     if (!ok) return cb(false);
+    if (action === 'wxpay') {
+      return location.href = '../wxpaytest/jsapicall.php?id=' + id;
+    }
     $.post('../orderaction.php?action=' + action, {
       order_id: id
     }, function(data) {

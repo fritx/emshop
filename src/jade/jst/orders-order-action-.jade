@@ -23,7 +23,7 @@ case order.status
           when 'WAIT_SELLER_SEND_GOODS'
             button(data-action="WAIT_SELLER_AGREE") 申请退货
           when 'WAIT_BUYER_PAY'
-            button(data-action="alipay") 微信支付
+            button(data-action="wxpay") 微信支付
             button(data-action="CANCEL_ORDER_BEFORE_PAY") 取消订单
           when 'WAIT_BUYER_RETURN_GOODS'
             button(data-action="WAIT_SELLER_CONFIRM_GOODS") 已退货

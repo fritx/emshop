@@ -34,12 +34,9 @@ function listOrders(orders) {
   $orders.find('.action-box button')
     .on('click', function() {
       var $btn = $(this);
-      var action = $btn.attr('data-action');
-      if (action === 'alipay') {
-        return notify('接口待接通...');
-      }
       ask('确定要' + $btn.text() + '吗？', function(ok) {
         if (!ok) return;
+        var action = $btn.attr('data-action');
         var id = +$btn.closest('.order-box').attr('data-id');
         actionOrder(id, action, function(ok) {
           if (!ok) return notify('操作失败');

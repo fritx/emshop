@@ -15,7 +15,7 @@ body {
 }
 
 #content {
-  > .content-inner {
+  >.content-inner {
     margin-top: 6px;
   }
 }
@@ -82,7 +82,17 @@ body {
   ul {
     margin: 10px 0 -8px;
     li {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      &:nth-child(2n+1) {
+        .lazy-box {
+          padding-right: 3px;
+        }
+      }
+      &:nth-child(2n) {
+        .lazy-box {
+          padding-left: 3px;
+        }
+      }
       .lazy-box {
         &.unloaded {
           overflow-y: hidden;
