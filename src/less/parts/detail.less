@@ -1,5 +1,9 @@
 @import "../config";
 
+#footer {
+  display: none;
+}
+
 #item-div {
   .img-box {
     .lazy-box {
@@ -21,9 +25,8 @@
     }
   }
   .desc-box {
-    margin: 0 0 12px;
     .title {
-      margin: 0.5em 0 0.7em;
+      margin: 0.5em 0;
       font-size: 140%;
     }
     .line {
@@ -47,41 +50,24 @@
   }
   .purchase-form {
     position: fixed;
-    bottom: 49px;
+    z-index: 9999;
+    bottom: 0;
     left: 0;
     right: 0;
-    padding: 14px 12px;
+    padding: 8px;
     border-top: 1px dashed @form-border-color;
-    background-color: white;
-    #num {
-      width: 30%;
-      text-align: center !important;
-      padding: 7px 2px;
-      display: inline-block;
-      position: relative;
-      z-index: 9;
-      border-radius: 0 !important;
-    }
-    .label {
-      width: 20%;
-    }
-    .delta-btn {
-      position: relative;
-      z-index: 8;
-      /* according to #num */
-      padding: 8px 12px;
-    }
+    background-color: rgba(255,255,255, 0.6);
     .buttons {
-      margin: 12px 0 0;
       button {
         width: 96%;
+        opacity: 0.9;
       }
     }
   }
   .detail-box {
     border-top: 1px dashed @form-border-color;
-    margin: 14px 0 6px;
-    padding-bottom: 120px;
+    margin: 0 0 6px;
+    padding-bottom: 10px;
     >div {
       margin: 14px 0 0;
       p {

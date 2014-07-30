@@ -5,19 +5,8 @@ function showItem(item) {
     );
 }
 
-function deltaNum(delta) {
-  var $num = $('#num');
-  var val = (+$num.val() || 0) + delta;
-  $num.val(Math.max(1, val));
-}
-
 function addToCart(silient, cb) {
-  var $num = $('#num');
-  var num = +$num.val();
-  if (isNaN(num) || num <= 0) {
-    return notify('宝贝数量至少为 1 件');
-  }
-  $num.val(1);
+  var num = 1;
   if (!item.onSale || num > item.store) {
     return notify('正在补货中，明天才可以购买哦~');
   }
