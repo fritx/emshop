@@ -35,6 +35,15 @@
     .sales {
       color: @status-color;
     }
+    .pure-u-1-2 {
+      >.line {
+        &:nth-child(2) {
+          .price, .-price {
+            text-decoration: line-through;
+          }
+        }
+      }
+    }
   }
   .purchase-form {
     border-top: 1px dashed @form-border-color;

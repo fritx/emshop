@@ -1,2 +1,2 @@
 require('coffee-script/register')
-var gulp = require('./gulpfile.coffee')
+var gulp = module.exports = require('./gulpfile.coffee')
