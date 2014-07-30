@@ -83,7 +83,7 @@ body {
     margin: 10px 0 -8px;
     li {
       margin-bottom: 6px;
-      &:nth-child(2n+1) {
+      &:nth-child(2n-1) {
         .lazy-box {
           padding-right: 3px;
         }
@@ -91,6 +91,12 @@ body {
       &:nth-child(2n) {
         .lazy-box {
           padding-left: 3px;
+        }
+      }
+      &:nth-child(1), &:nth-child(2) {
+        width: 100%;
+        .lazy-box {
+          padding: 0;
         }
       }
       .lazy-box {
