@@ -21,7 +21,8 @@ function prepareOrder(cb) {
       id: +$item.attr('data-id')
     });
     var $num = $item.find('.num');
-    item.num = Math.max(1, +$num.val() || 0);
+    var num = parseInt($num.val()) || 0;
+    item.num = Math.max(1, num);
     $num.val(item.num);
     item.checked = $tick.is('.on');
   });
