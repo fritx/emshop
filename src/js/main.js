@@ -69,6 +69,10 @@ function makeFooterToggle() {
   }, 300));
 }
 
+function revert() {
+  if (history.length <= 2) return link('home/');
+  history.back();
+}
 function link(href, _params) {
   var matched = /^([^\?]*)(.*)$/.exec(href);
   var path = matched[1];
@@ -86,7 +90,7 @@ function notify(msg, back) {
   alertify.alert(msg, function () {
     // redirect
     if (back === true) {
-      history.back();
+      revert();
     } else if (back === 0) {
       location.reload();
     } else if (_.isString(back)) {
