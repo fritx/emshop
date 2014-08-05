@@ -4,7 +4,7 @@ mixin input(field)
       label.label= field.title
     .pure-u-3-5
      if field.type === 'select'
-       select(name=field.key)
+       select(name=field.key, readonly=field.readonly)
          each v, k in field.list
            option(value=v,
            selected=(v===field.value)) #{k}
@@ -13,7 +13,7 @@ mixin input(field)
          - field.value = field.value || ''
          each v, k in field.list
            label.radio
-             input(type='radio', name=field.key,
+             input(type='radio', name=field.key, readonly=field.readonly,
              value=v, checked=(v===field.value))
              div #{k}
      else

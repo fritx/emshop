@@ -30,9 +30,9 @@ function showForm(info) {
         title: '付款方式',
         key: 'pay_way',
         type: 'select',
+        readonly: true,
         list: {
-          '在线支付': 'online',
-          '货到付款': 'offline'
+          '微信支付': 'online'
         }
       },
       {
