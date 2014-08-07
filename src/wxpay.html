@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="../">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="月饼, 邮政, 江门, 商城, 订单, 微信">
+  <meta name="description" content="江门邮政月饼商城">
+  <title>邮政商城</title>
+  <link rel="stylesheet" href="css/_deps.css">
+  <link rel="stylesheet" href="css/_site.css">
+</head>
+<body>
+  <script>
+    var params = {
+      // php echo
+    };
+    ask('确定进入微信支付', function(ok) {
+      if (!ok) return revert();
+      if (typeof WeixinJSBridge === 'undefined') {
+        return notify('需要在微信环境下进行'， true);
+      }
+      WeixinJSBridge.invoke('getBrandWCPayRequest', params, function(res) {
+        notify('微信支付失败'， true);
+      });
+    });
+  </script>
+</body>
+</html>
