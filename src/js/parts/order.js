@@ -3,12 +3,6 @@ function showForm(info) {
   fields = [
     [
       {
-        readonly: true,
-        title: '地　区',
-        key: 'area',
-        value: area.title
-      },
-      {
         title: '收货人',
         key: 'signer_name'
       },
