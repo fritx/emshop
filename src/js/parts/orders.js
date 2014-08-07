@@ -34,16 +34,23 @@ function listOrders(orders) {
   $orders.find('.action-box button')
     .on('click', function() {
       var $btn = $(this);
+      var id = +$btn.closest('.order-box').attr('data-id');
+      var action = $btn.attr('data-action');
+      if (action === 'wxpay') {
+        return doOrder(id, action);
+      }
       ask('确定要' + $btn.text() + '吗？', function(ok) {
         if (!ok) return;
-        var action = $btn.attr('data-action');
-        var id = +$btn.closest('.order-box').attr('data-id');
-        actionOrder(id, action, function(ok) {
-          if (!ok) return notify('操作失败');
-          notify('操作成功', 0);
-        });
+        doOrder(id, action);
       });
     });
+}
+
+function doOrder(id, action) {
+  actionOrder(id, action, function(ok) {
+    if (!ok) return notify('操作失败');
+    notify('操作成功', 0);
+  });
 }
 
 var $orders = $('#orders-div');
