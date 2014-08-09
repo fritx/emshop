@@ -104,6 +104,14 @@ function submitOrder() {
     notify('订单填写不完整');
     return toggleButton(true);
   }
+  if (_.some([
+    'signer_tel', 'payer_tel'
+  ], function (key) {
+    return !/^\d+(\-\d+)?$/.test(info[key]);
+  })) {
+    notify('电话号码格式不正确');
+    return toggleButton(true);
+  }
   if (!info.coupon) return confirmOrder(oItems, info);
   checkCoupon(info.coupon, function(data) {
     if (!data) {
