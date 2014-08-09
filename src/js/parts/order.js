@@ -131,16 +131,17 @@ function confirmOrder(oItems, info) {
     if (!ok) {
       return toggleButton(true);
     }
-    saveOrder(oItems, info, function (ok) {
+    saveOrder(oItems, info, function (ok, id) {
       if (!ok) {
         toggleButton(true);
         return notify('部分商品仍在补货中，可以先购买其他的~');
       }
       emptyCurrOrder(function () {
-        notify([
-          '提交成功！',
-          '请尽快付款以便我们及时发货！',
-        ].join(''), 'orders/');
+        //notify([
+        //  '提交成功！',
+        //  '请尽快付款以便我们及时发货！',
+        //].join(''), 'orders/');
+        linkAfterOrder(id);
       });
     });
   });

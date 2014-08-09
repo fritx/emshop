@@ -152,6 +152,9 @@ function saveData(data, cb) {
 function setDormsList(cb) {
   cb(); // do nothing
 }
+function linkAfterOrder(id) {
+  link('orders/');
+}
 function actionOrder(id, action, cb) {
   $.post('api/action_order', {
     id: id,

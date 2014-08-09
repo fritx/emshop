@@ -191,7 +191,8 @@ function saveOrder(oItems, info, cb) {
           products_id: _.pluck(oItems, 'id').join(','),
           products_amounts: _.pluck(oItems, 'num').join(',')
         }, function (data) {
-          cb(data === 'ok');
+          if (!/^\d+$/.test(data)) return cb(false);
+          cb(true, parseInt(data));
         });
       });
     });
@@ -250,11 +251,17 @@ function setDormsList(cb) {
     cb();
   });
 }
+function linkWxpay(id) {
+  location.href = '../wxpay/jsapicall.php?showwxpaytitle=1&id=' + id;
+}
+function linkAfterOrder(id) {
+  linkWxpay(id);
+}
 function actionOrder(id, action, cb) {
   validate(function(ok) {
     if (!ok) return cb(false);
     if (action === 'wxpay') {
-      return location.href = '../wxpay/jsapicall.php?showwxpaytitle=1&id=' + id;
+      return linkWxpay(id);
     }
     if (_.contains([
       'WAIT_SELLER_AGREE', 'WAIT_SELLER_AGREE_AFTER_SENT'
