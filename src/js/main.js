@@ -164,30 +164,49 @@ var siteTitle = $('title').text();
 var params = searchToParams();
 var area, opid;
 
-function initPage(cb) {
-  if (!$().text || !store.enabled) {
-    notify('你的浏览器没跟上时代啊!');
-    throw new Error('Browser too bad.');
+if (!$().text || !store.enabled) {
+  notify('你的浏览器没跟上时代啊!');
+  throw new Error('Browser too bad.');
+}
+
+_.templateSettings = {
+  evaluate: /{{([\s\S]+?)}}/g,
+  interpolate: /{{=([\s\S]+?)}}/g,
+  escape: /{{-([\s\S]+?)}}/g
+};
+
+alertify.set({
+  labels: {
+    ok: '好的',
+    cancel: '不要'
   }
+});
 
-  store.set('cart_items', store.get('cart_items') || []);
-  store.set('curr_order_items', store.get('curr_order_items') || []);
-  store.set('order_info', store.get('order_info') || {});
-  store.set('wx_opid', store.get('wx_opid') || 'consumerOPID');
+store.set('cart_items', store.get('cart_items') || []);
+store.set('curr_order_items', store.get('curr_order_items') || []);
+store.set('order_info', store.get('order_info') || {});
+store.set('wx_opid', store.get('wx_opid') || 'consumerOPID');
 
+opid = params.consumerOPID || store.get('wx_opid');
+store.set('wx_opid', opid);
+if (params.consumerOPID) {
+  link(location.href, { consumerOPID: null });
+}
+
+$(function () {
+  /* toggling footer */
+  makeFooterToggle();
+
+  /* delegate links */
   $(document).delegate('[href]', 'click', function (e) {
     if (!(e.ctrlKey || e.shiftKey || e.metaKey)) {
       e.preventDefault();
       link($(this).attr('href'));
     }
   });
+});
 
-  opid = params.consumerOPID || store.get('wx_opid');
-  store.set('wx_opid', opid);
-  if (params.consumerOPID) {
-    link(location.href, { consumerOPID: null });
-  }
-
+function initPage(cb) {
   fetchAreasList(function (areas) {
     fetchOrderInfo(function(info) {
       area = params.area ? _.findWhere(areas, { id: +params.area }) :
@@ -205,24 +224,6 @@ function initPage(cb) {
           notify('你的地区信息不正确啊!');
           throw new Error('Invalid area.');
         }
-
-        _.templateSettings = {
-          evaluate: /{{([\s\S]+?)}}/g,
-          interpolate: /{{=([\s\S]+?)}}/g,
-          escape: /{{-([\s\S]+?)}}/g
-        };
-
-        alertify.set({
-          labels: {
-            ok: '好的',
-            cancel: '不要'
-          }
-        });
-
-        $(function () {
-          /* toggling footer */
-          makeFooterToggle();
-        });
 
         cb();
       });
