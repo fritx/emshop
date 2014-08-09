@@ -53,7 +53,8 @@ function listItems() {
 function removeFromCart() {
   var checkedItems = _.where(xItems, { checked: true });
   if (checkedItems.length <= 0) {
-    return notify('没有勾选的宝贝');
+    //return notify('没有勾选要移除的宝贝');
+    return;
   }
   ask('确定移除勾选的宝贝?', function (ok) {
     if (ok) {
@@ -70,7 +71,8 @@ function gotoOrder() {
   prepareOrder(function () {
     var checkedItems = _.where(xItems, { checked: true });
     if (checkedItems.length <= 0) {
-      return notify('没有勾选的宝贝');
+      //return notify('没有勾选要购买的宝贝');
+      return;
     }
     if (_.some(checkedItems, function (item) {
       return item.num <= 0;

@@ -53,7 +53,8 @@ function doOrder(id, action) {
     if (!ok) {
       return notify(msg || '操作失败');
     }
-    notify(msg || '操作成功', 0);
+    if (msg) notify(msg);
+    link(true);
   });
 }
 

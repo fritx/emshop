@@ -127,10 +127,10 @@ function submitOrder() {
 }
 
 function confirmOrder(oItems, info) {
-  ask('确定提交订单?', function (ok) {
-    if (!ok) {
-      return toggleButton(true);
-    }
+  //ask('确定提交订单?', function (ok) {
+  //  if (!ok) {
+  //    return toggleButton(true);
+  //  }
     saveOrder(oItems, info, function (ok, id) {
       if (!ok) {
         toggleButton(true);
@@ -144,7 +144,7 @@ function confirmOrder(oItems, info) {
         linkAfterOrder(id);
       });
     });
-  });
+  //});
 }
 
 /* variables */
