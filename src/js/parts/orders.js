@@ -41,7 +41,7 @@ function listOrders(orders) {
       if (action === 'wxpay') {
         return doOrder(id, action);
       }
-      ask('确定要' + $btn.text() + '吗？', function(ok) {
+      ask('确定要' + $btn.text() + '吗?', function(ok) {
         if (!ok) return;
         doOrder(id, action);
       });

@@ -134,7 +134,7 @@ function confirmOrder(oItems, info) {
     saveOrder(oItems, info, function (ok, id) {
       if (!ok) {
         toggleButton(true);
-        return notify('部分商品仍在补货中，可以先购买其他的~');
+        return notify('部分商品仍在补货中,可以先购买其他的~');
       }
       emptyCurrOrder(function () {
         //notify([

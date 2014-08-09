@@ -75,11 +75,11 @@ function gotoOrder() {
     if (_.some(checkedItems, function (item) {
       return item.num <= 0;
     })) {
-      return notify('宝贝数量至少为 1 件');
+      return notify('宝贝数量至少为1件');
     }
     checkAllOnSale(checkedItems, function (ok) {
       if (!ok) {
-        return notify('部分商品仍在补货中，可以先购买其他的~');
+        return notify('部分商品仍在补货中,可以先购买其他的~');
       }
       saveCurrOrder(checkedItems, function () {
         link('order/');

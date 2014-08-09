@@ -8,7 +8,7 @@ function showItem(item) {
 function addToCart(silient, cb) {
   var num = 1;
   if (!item.onSale || num > item.store) {
-    return notify('正在补货中，明天才可以购买哦~');
+    return notify('正在补货中,明天才可以购买哦~');
   }
 
   fetchCartItems(function(items) {

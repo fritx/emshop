@@ -275,7 +275,7 @@ function actionOrder(id, action, cb) {
   });
   function tenpayOrder(data) {
     if (data !== 'success') {
-      return cb(false, '微信请求失败，请稍后重试');
+      return cb(false, '微信请求失败,请稍后重试');
     }
     doOrder();
   }

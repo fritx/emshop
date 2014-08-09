@@ -169,7 +169,7 @@ function checkCoupon(code, cb) {
   }, function(data) {
     if (!data) return cb(false);
     data.message = data.title +
-      '，还可以使用' + data.times + '次';
+      ',还可以使用' + data.times + '次';
     cb(data);
   });
 }
