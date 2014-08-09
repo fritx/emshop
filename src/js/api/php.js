@@ -254,14 +254,31 @@ function actionOrder(id, action, cb) {
   validate(function(ok) {
     if (!ok) return cb(false);
     if (action === 'wxpay') {
-      return location.href = '../wxpay/jsapicall.php?id=' + id;
+      return location.href = '../wxpay/jsapicall.php?showwxpaytitle=1&id=' + id;
     }
+    if (_.contains([
+      'WAIT_SELLER_AGREE', 'WAIT_SELLER_AGREE_AFTER_SENT'
+    ], action)) {
+      $.get('../wxpay/tenpay/index.php?id=' + id, tenpayOrder);
+    } else if (action === 'WAIT_SELLER_CONFIRM_GOODS') {
+      $.get('../wxpay/tenpay/buyersend.php?id=' + id, tenpayOrder);
+    } else {
+      doOrder();
+    }
+  });
+  function tenpayOrder(data) {
+    if (data !== 'success') {
+      return cb(false, '微信请求失败，请稍后重试');
+    }
+    doOrder();
+  }
+  function doOrder() {
     $.post('../orderaction.php?action=' + action, {
       order_id: id
     }, function(data) {
       cb(data === 'ok');
     });
-  });
+  }
 }
 function checkCoupon(code, cb) {
   $.get('../checkcoupons.php', {

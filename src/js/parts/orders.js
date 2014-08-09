@@ -2,6 +2,7 @@ function listOrders(orders) {
   _.each(orders, function (order) {
     order._status = ({
       TRADE_FINISHED: '交易完成',
+      TRADE_CLOSED: '订单已取消',
       WAIT_BUYER_CONFIRM_GOODS: '等待买家确认收货',
       WAIT_SELLER_SEND_GOODS: '等待卖家发货',
       WAIT_BUYER_PAY: '等待买家付款',
@@ -12,6 +13,7 @@ function listOrders(orders) {
       REFUND_CLOSED: '已退货（发货前）',
       REFUND_SUCCESS: '已退货（发货后）',
       OFFLINE_TRADE_FINISHED: '交易完成',
+      OFFLINE_TRADE_CLOSED: '订单已取消',
       OFFLINE_WAIT_SELLER_CONFIRM_MONEY: '等待卖家确认付款',
       OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY: '等待买家收货付款',
       OFFLINE_WAIT_SELLER_SEND_GOODS: '等待卖家发货',
@@ -47,9 +49,11 @@ function listOrders(orders) {
 }
 
 function doOrder(id, action) {
-  actionOrder(id, action, function(ok) {
-    if (!ok) return notify('操作失败');
-    notify('操作成功', 0);
+  actionOrder(id, action, function(ok, msg) {
+    if (!ok) {
+      return notify(msg || '操作失败');
+    }
+    notify(msg || '操作成功', 0);
   });
 }
 
