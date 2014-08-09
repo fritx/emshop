@@ -130,7 +130,7 @@ function confirmOrder(oItems, info) {
       emptyCurrOrder(function () {
         notify([
           '提交成功！',
-          '我们将会在送货前通知您。',
+          '请尽快付款以便我们及时发货！',
         ].join(''), 'orders/');
       });
     });
