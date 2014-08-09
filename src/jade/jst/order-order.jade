@@ -18,6 +18,7 @@ mixin input(field)
              div #{k}
      else
        input(type='text', name=field.key,
+       placeholder=field.placeholder,
        value=field.value||'', readonly=field.readonly)
 
 form.pure-form

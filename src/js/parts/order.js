@@ -31,6 +31,7 @@ function showForm(info) {
       },
       {
         title: '使用优惠券',
+        placeholder: '如有请填入券号',
         key: 'coupon'
       }
     ],
@@ -96,7 +97,7 @@ function submitOrder() {
     return memo;
   }, {});
   if (_.some([
-    'area', 'signer_name', 'signer_tel', 'signer_addr',
+    'signer_name', 'signer_tel', 'signer_addr',
     'payer_tel', 'pay_way'
   ], function (key) {
     return info[key] === '';
