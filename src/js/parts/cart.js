@@ -60,7 +60,7 @@ function removeFromCart() {
       xItems = _.where(xItems, { checked: false });
       saveCart(xItems, function () {
         notify('宝贝已移除');
-        location.reload();
+        link(true);
       });
     }
   });

@@ -44,7 +44,7 @@ initPage(function () {
         if (current) {
           newOrderBy = valToSign(-1 * orderVal) + dataKey;
         }
-        link(location.href, { orderBy: newOrderBy });
+        link(true, { orderBy: newOrderBy });
       });
     });
 

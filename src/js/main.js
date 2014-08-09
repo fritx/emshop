@@ -74,6 +74,7 @@ function revert() {
   history.back();
 }
 function link(href, _params) {
+  if (href === true) href = location.href;
   var matched = /^([^\?]*)(.*)$/.exec(href);
   var path = matched[1];
   var search = matched[2];
@@ -92,7 +93,7 @@ function notify(msg, back) {
     if (back === true) {
       revert();
     } else if (back === 0) {
-      location.reload();
+      link(true);
     } else if (_.isString(back)) {
       link(back);
     } else if (_.isFunction(back)) {
