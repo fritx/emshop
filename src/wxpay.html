@@ -20,24 +20,31 @@
   <script src="js/_deps.js"></script>
   <script src="js/_site.js"></script>
   <script>
-    var params = {
-      // php echo
-    }; 
+    var params = <?php echo $jj; ?>;
 
-    ask('确定提交订单,并进入微信支付吗?', function(ok) {      
-      if (!ok) return revert();     
-      if (typeof WeixinJSBridge === 'undefined') {       
-        return notify('需要在微信环境下进行', 'orders/');      
-      }
-      WeixinJSBridge.invoke('getBrandWCPayRequest', params, function(res) { 
-        if (res.err_msg !== 'get_brand_wcpay_request:ok') {
-          notify('微信支付失败,请稍后重试~');
-        }
-        link('orders/');
+    var timeout = setTimeout(function() {
+      notify('微信环境加载失败', 'orders/');
+    }, 5000);
+    
+    if (window.WeixinJSBridge) {
+      wxReady();
+    } else {
+      $(document).on('WeixinJSBridgeReady', wxReady);
+    }
+
+    function wxReady() {
+      clearTimeout(timeout);
+      loadReady();
+      ask('确定提交订单,并进入微信支付吗?', function(ok) {
+        if (!ok) return revert();
+        WeixinJSBridge.invoke('getBrandWCPayRequest', params, function(res) {
+          if (res.err_msg !== 'get_brand_wcpay_request:ok') {
+            notify('微信支付失败,请稍后重试~');
+          }
+          link('orders/');
+        });
       });
-    });
-
-    loadReady();
+    }
   </script>
 </body>
 </html>
