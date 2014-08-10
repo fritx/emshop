@@ -1,7 +1,13 @@
 @import "../config";
 
 body {
-  background-color: #ededed;
+  background-color: @home-body-bgcolor;
+}
+
+.lazy-box {
+  &.unloaded {
+    background-color: @home-lazy-bgcolor;
+  }
 }
 
 #banner {
