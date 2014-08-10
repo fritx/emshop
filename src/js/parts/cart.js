@@ -4,7 +4,7 @@ function showOrder() {
     return memo + item._price * item.num;
   }, 0);
   /* fix floating bug */
-  cost = Math.round(cost * 10) / 10;
+  cost = Math.round(cost * 100) / 100;
   $('#order-div')
     .html(JST['cart-order']({
       items: xItems,

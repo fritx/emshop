@@ -10,9 +10,9 @@
     "sales": 3245,
     "store": 3,
     "onSale": true,
-    "marketPrice": 99.9,
-    "shopPrice": 79.9,
-    "promotingPrice": 69.9
+    "marketPrice": 0.03,
+    "shopPrice": 0.02,
+    "promotingPrice": 0.01
   },
   {
     "id": 2,
