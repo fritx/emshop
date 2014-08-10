@@ -8,6 +8,7 @@ function listOrders(orders) {
       WAIT_BUYER_PAY: '等待买家付款',
       WAIT_SELLER_AGREE: '等待卖家同意退款（发货前）',
       WAIT_SELLER_AGREE_AFTER_SENT: '等待卖家同意退货（发货后）',
+      SELLER_REFUSE_BUYER: '卖家拒绝退货,再次等待买家收货',
       WAIT_BUYER_RETURN_GOODS: '等待买家退货',
       WAIT_SELLER_CONFIRM_GOODS: '等待卖家确认收货',
       REFUND_CLOSED: '已退款（发货前）',
@@ -18,6 +19,7 @@ function listOrders(orders) {
       OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY: '等待买家收货付款',
       OFFLINE_WAIT_SELLER_SEND_GOODS: '等待卖家发货',
       OFFLINE_CANCEL_ORDER_BEFORE_SEND: '等待卖家同意退货',
+      OFFLINE_SELLER_REFUSE_BUYER: '卖家拒绝退货,再次等待买家收货',
       OFFLINE_WAIT_BUYER_RETURN_GOODS: '等待买家退货',
       OFFLINE_WAIT_SELLER_CONFIRM_GOODS: '等待卖家确认收货',
       OFFLINE_REFUND_FINISHED: '已退货'

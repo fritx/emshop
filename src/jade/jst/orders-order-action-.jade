@@ -19,6 +19,8 @@ case order.status
     .pure-u-1
       .action-box.pull-right
         case order.status
+          when 'SELLER_REFUSE_BUYER'
+            button(data-action="TRADE_FINISHED") 确认收货
           when 'WAIT_BUYER_CONFIRM_GOODS'
             button(data-action="TRADE_FINISHED") 确认收货
             button(data-action="WAIT_SELLER_AGREE_AFTER_SENT") 申请退货
@@ -29,6 +31,8 @@ case order.status
             button(data-action="CANCEL_ORDER_BEFORE_PAY") 取消订单
           when 'WAIT_BUYER_RETURN_GOODS'
             button(data-action="WAIT_SELLER_CONFIRM_GOODS") 已退货
+          when 'OFFLINE_SELLER_REFUSE_BUYER'
+            button(data-action="TRADE_FINISHED") 确认收货
           when 'OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY'
             button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_MONEY") 确认收货
             button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_GOODS") 申请退货

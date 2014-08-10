@@ -1,5 +1,28 @@
 [
   {
+    "id": 58,
+    "name": "fritx",
+    "tel": "13400000000",
+    "address": "江门 五邑大学 16-308 1号床",
+    "message": "送到床上来",
+    "date": "2014-07-11 21:10:30",
+    "price": 120.8,
+    "cost": 100.8,
+    "discount": "20元优惠券",
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "pay_way": "online",
+    "express": [
+      "abc3211234567"
+    ],
+    "status": "SELLER_REFUSE_BUYER"
+  },
+  {
     "id": 59,
     "name": "fritx",
     "tel": "13400000000",
@@ -250,6 +273,29 @@
     "status": "REFUND_SUCCESS"
   },
 
+  {
+    "id": 8,
+    "name": "fritx",
+    "tel": "13400000000",
+    "address": "江门 五邑大学 16-308 1号床",
+    "message": "送到床上来",
+    "date": "2014-07-11 21:10:30",
+    "price": 120.8,
+    "cost": 100.8,
+    "discount": "20元优惠券",
+    "items": [
+      {
+        "id": 1,
+        "price": 50.4,
+        "num": 2
+      }
+    ],
+    "pay_way": "offline",
+    "express": [
+      "abc3211234567"
+    ],
+    "status": "OFFLINE_SELLER_REFUSE_BUYER"
+  },
   {
     "id": 9,
     "name": "fritx",
