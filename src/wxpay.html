@@ -36,7 +36,7 @@
       clearTimeout(timeout);
       loadReady();
       ask('确定提交订单,并进入微信支付吗?', function(ok) {
-        if (!ok) return revert();
+        if (!ok) return link('orders/');
         WeixinJSBridge.invoke('getBrandWCPayRequest', params, function(res) {
           if (res.err_msg !== 'get_brand_wcpay_request:ok') {
             notify('微信支付失败,请稍后重试~');

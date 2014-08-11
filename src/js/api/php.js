@@ -268,7 +268,7 @@ function setDormsList(cb) {
   });
 }
 function linkWxpay(id) {
-  location.href = '../wxpay/jsapicall.php?showwxpaytitle=1&id=' + id;
+  link('../wxpay/jsapicall.php?showwxpaytitle=1&id=' + id);
 }
 function linkAfterOrder(id) {
   linkWxpay(id);
