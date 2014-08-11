@@ -20,6 +20,9 @@ ul.pure-g
               span.trailing 地址 :&nbsp;
               span= order.address
             div
+              span.trailing 订单号 :&nbsp;
+              span= order.id
+            div
               - _pay_way = ({offline:'货到付款',online:'微信支付'})[order.pay_way]
               span.trailing 付款方式 :&nbsp;
               span= _pay_way
