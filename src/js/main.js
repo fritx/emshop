@@ -18,10 +18,10 @@ function searchToParams(search) {
 }
 
 function paramsToSearch(params) {
-  return '?' + _.reduce(params, function (str, val, key) {
+  return _.reduce(params, function (str, val, key) {
     if (val == null) return str;
     var arr = _.isArray(val) ? val : [val];
-    return str + (str ? '&' : '') +
+    return str + (str ? '&' : '?') +
       _.reduce(arr, function (segs, v) {
         return segs + (segs ? '&' : '') + key + '=' + encodeURIComponent(v);
       }, '');
@@ -69,8 +69,8 @@ function makeFooterToggle() {
   }, 300));
 }
 
-function revert() {
-  if (history.length <= 2) return link('home/');
+function revert(params) {
+  if (history.length <= 2) return link('home/', params);
   history.back();
 }
 function link(href, _params) {
@@ -212,7 +212,7 @@ function initPage(cb) {
         notify('你的地区信息为空啊!');
         throw new Error('Empty area.');
       }
-      if (!params.area) link(location.href);
+      if (!params.area) return link(location.href);
 
       saveData({
         area: area, opid: opid
