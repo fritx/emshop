@@ -40,9 +40,7 @@
       }
     ],
     "pay_way": "online",
-    "express": [
-      "顺丰 abc3211234567"
-    ],
+    "express": [],
     "status": "TRADE_CLOSED"
   },
   {
@@ -242,10 +240,7 @@
       }
     ],
     "pay_way": "online",
-    "express": [
-      "顺丰 abc3211234567",
-      "EMS abc3211234567"
-    ],
+    "express": [],
     "status": "REFUND_CLOSED"
   },
   {
@@ -314,9 +309,7 @@
       }
     ],
     "pay_way": "offline",
-    "express": [
-      "顺丰 abc3211234567"
-    ],
+    "express": [],
     "status": "OFFLINE_TRADE_CLOSED"
   },
   {
