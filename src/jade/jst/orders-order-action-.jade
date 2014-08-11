@@ -1,3 +1,4 @@
+- var btns = []
 case order.status
   when 'TRADE_FINISHED'
   when 'TRADE_CLOSED'
@@ -15,28 +16,30 @@ case order.status
   when 'OFFLINE_WAIT_SELLER_CONFIRM_GOODS'
   when 'OFFLINE_REFUND_FINISHED'
     break
-  default
-    .pure-u-1
-      .action-box.pull-right
-        case order.status
-          when 'SELLER_REFUSE_BUYER'
-            button(data-action="TRADE_FINISHED") 确认收货
-          when 'WAIT_BUYER_CONFIRM_GOODS'
-            button(data-action="TRADE_FINISHED") 确认收货
-            button(data-action="WAIT_SELLER_AGREE_AFTER_SENT") 申请退货
-          when 'WAIT_SELLER_SEND_GOODS'
-            button(data-action="WAIT_SELLER_AGREE") 申请退款
-          when 'WAIT_BUYER_PAY'
-            button(data-action="wxpay") 微信支付
-            button(data-action="CANCEL_ORDER_BEFORE_PAY") 取消订单
-          when 'WAIT_BUYER_RETURN_GOODS'
-            button(data-action="WAIT_SELLER_CONFIRM_GOODS") 已退货
-          when 'OFFLINE_SELLER_REFUSE_BUYER'
-            button(data-action="TRADE_FINISHED") 确认收货
-          when 'OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY'
-            button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_MONEY") 确认收货
-            button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_GOODS") 申请退货
-          when 'OFFLINE_WAIT_SELLER_SEND_GOODS'
-            button(data-action="OFFLINE_CANCEL_ORDER_BEFORE_SEND") 取消订单
-          when 'OFFLINE_WAIT_BUYER_RETURN_GOODS'
-            button(data-action="OFFLINE_WAIT_SELLER_CONFIRM_GOODS") 已退货
+  when 'SELLER_REFUSE_BUYER'
+    - btns.push({ action: 'TRADE_FINISHED', text: '确认收货' })
+  when 'WAIT_BUYER_CONFIRM_GOODS'
+    - btns.push({ action: 'TRADE_FINISHED', text: '确认收货' })
+    - btns.push({ action: 'WAIT_SELLER_AGREE_AFTER_SENT', text: '申请退货' })
+  when 'WAIT_SELLER_SEND_GOODS'
+    - btns.push({ action: 'WAIT_SELLER_AGREE', text: '申请退款' })
+  when 'WAIT_BUYER_PAY'
+    - btns.push({ action: 'wxpay', text: '微信支付' })
+    - btns.push({ action: 'CANCEL_ORDER_BEFORE_PAY', text: '取消订单' })
+  when 'WAIT_BUYER_RETURN_GOODS'
+    - btns.push({ action: 'WAIT_SELLER_CONFIRM_GOODS', text: '已退货' })
+  when 'OFFLINE_SELLER_REFUSE_BUYER'
+    - btns.push({ action: 'TRADE_FINISHED', text: '确认收货' })
+  when 'OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY'
+    - btns.push({ action: 'OFFLINE_WAIT_SELLER_CONFIRM_MONEY', text: '确认收货' })
+    - btns.push({ action: 'OFFLINE_WAIT_SELLER_CONFIRM_GOODS', text: '申请退货' })
+  when 'OFFLINE_WAIT_SELLER_SEND_GOODS'
+    - btns.push({ action: 'OFFLINE_CANCEL_ORDER_BEFORE_SEND', text: '取消订单' })
+  when 'OFFLINE_WAIT_BUYER_RETURN_GOODS'
+    - btns.push({ action: 'OFFLINE_WAIT_SELLER_CONFIRM_GOODS', text: '已退货' })
+
+if btns.length
+  .pure-u-1
+    .action-box.pull-right
+      each btn in btns
+        button(data-action="#{btn.action}") #{btn.text}
