@@ -177,6 +177,19 @@ function checkAllOnSale(oItems, cb) {
     cb(ok);
   });
 }
+function fetchOrderInfo(cb) {
+  var localInfo = store.get('order_info');
+  $.get('../getaddress.php', function(data) {
+    var onlineInfo = JSON.parse(data);
+    var info = _.defaults({
+      signer_name: onlineInfo.consumer_name,
+      signer_tel: onlineInfo.telephone,
+      signer_addr: onlineInfo.address,
+      payer_tel: onlineInfo.payer_telephone
+    }, localInfo);
+    cb(info);
+  });
+}
 function saveOrder(oItems, info, cb) {
   saveOrderInfo(info, function () {
     validate(function(ok) {

@@ -123,6 +123,10 @@ function checkAllOnSale(oItems, cb) {
     }));
   });
 }
+function fetchOrderInfo(cb) {
+  var info = store.get('order_info');
+  cb(info);
+}
 function saveOrder(oItems, info, cb) {
   saveOrderInfo(
     _.omit(info, ['message']),

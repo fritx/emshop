@@ -113,10 +113,6 @@ function calcPrice(item) {
 function checkOnSale(item, num) {
   return item.onSale && item.store >= (num || 0);
 }
-function fetchOrderInfo(cb) {
-  var info = store.get('order_info');
-  cb(info);
-}
 function saveOrderInfo(info, cb) {
   store.set('order_info', info);
   cb();
