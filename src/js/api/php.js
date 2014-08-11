@@ -155,7 +155,9 @@ function fetchOrdersList(cb) {
           cost: +order.discount_price,
           price: +order.price,
           discount: order.coupons_message,
-          express: order.expressno ? [order.expressno] : [],
+          express: order.expressno ? [
+            order.company + ' ' + order.expressno
+          ] : [],
           status: order.pStatus
         };
         next(null, xOrder);

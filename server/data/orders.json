@@ -18,7 +18,7 @@
     ],
     "pay_way": "online",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "SELLER_REFUSE_BUYER"
   },
@@ -41,7 +41,7 @@
     ],
     "pay_way": "online",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "TRADE_CLOSED"
   },
@@ -64,7 +64,7 @@
     ],
     "pay_way": "online",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "TRADE_FINISHED"
   },
@@ -87,7 +87,7 @@
     ],
     "pay_way": "online",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "WAIT_BUYER_CONFIRM_GOODS"
   },
@@ -173,7 +173,7 @@
     ],
     "pay_way": "online",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "WAIT_SELLER_AGREE_AFTER_SENT"
   },
@@ -196,7 +196,7 @@
     ],
     "pay_way": "online",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "WAIT_BUYER_RETURN_GOODS"
   },
@@ -219,8 +219,8 @@
     ],
     "pay_way": "online",
     "express": [
-      "abc3211234567",
-      "def0001234567"
+      "顺丰 abc3211234567",
+      "EMS abc3211234567"
     ],
     "status": "WAIT_SELLER_CONFIRM_GOODS"
   },
@@ -243,8 +243,8 @@
     ],
     "pay_way": "online",
     "express": [
-      "abc3211234567",
-      "def0001234567"
+      "顺丰 abc3211234567",
+      "EMS abc3211234567"
     ],
     "status": "REFUND_CLOSED"
   },
@@ -267,8 +267,8 @@
     ],
     "pay_way": "online",
     "express": [
-      "abc3211234567",
-      "def0001234567"
+      "顺丰 abc3211234567",
+      "EMS abc3211234567"
     ],
     "status": "REFUND_SUCCESS"
   },
@@ -292,7 +292,7 @@
     ],
     "pay_way": "offline",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "OFFLINE_SELLER_REFUSE_BUYER"
   },
@@ -315,7 +315,7 @@
     ],
     "pay_way": "offline",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "OFFLINE_TRADE_CLOSED"
   },
@@ -338,7 +338,7 @@
     ],
     "pay_way": "offline",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "OFFLINE_TRADE_FINISHED"
   },
@@ -361,7 +361,7 @@
     ],
     "pay_way": "offline",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "OFFLINE_WAIT_SELLER_CONFIRM_MONEY"
   },
@@ -384,7 +384,7 @@
     ],
     "pay_way": "offline",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "OFFLINE_WAIT_BUYER_CONFIRM_GOODS_AND_PAY"
   },
@@ -449,7 +449,7 @@
     ],
     "pay_way": "offline",
     "express": [
-      "abc3211234567"
+      "顺丰 abc3211234567"
     ],
     "status": "OFFLINE_WAIT_BUYER_RETURN_GOODS"
   },
@@ -472,8 +472,8 @@
     ],
     "pay_way": "offline",
     "express": [
-      "abc3211234567",
-      "def0001234567"
+      "顺丰 abc3211234567",
+      "EMS abc3211234567"
     ],
     "status": "OFFLINE_WAIT_SELLER_CONFIRM_GOODS"
   },
@@ -496,8 +496,8 @@
     ],
     "pay_way": "offline",
     "express": [
-      "abc3211234567",
-      "def0001234567"
+      "顺丰 abc3211234567",
+      "EMS abc3211234567"
     ],
     "status": "OFFLINE_REFUND_FINISHED"
   }
