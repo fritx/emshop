@@ -155,6 +155,7 @@ function fetchOrdersList(cb) {
           cost: +order.discount_price,
           price: +order.price,
           discount: order.coupons_message,
+          returnable: !!order.returnable,
           express: order.expressno ? [
             order.company + ' ' + order.expressno
           ] : [],

@@ -16,6 +16,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [
       "顺丰 abc3211234567"
@@ -39,6 +40,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [],
     "status": "TRADE_CLOSED"
@@ -60,6 +62,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [
       "顺丰 abc3211234567"
@@ -83,6 +86,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [
       "顺丰 abc3211234567"
@@ -106,6 +110,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [],
     "status": "WAIT_SELLER_SEND_GOODS"
@@ -127,6 +132,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [],
     "status": "WAIT_BUYER_PAY"
@@ -148,6 +154,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [],
     "status": "WAIT_SELLER_AGREE"
@@ -169,6 +176,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [
       "顺丰 abc3211234567"
@@ -192,6 +200,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [
       "顺丰 abc3211234567"
@@ -215,6 +224,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [
       "顺丰 abc3211234567",
@@ -239,6 +249,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [],
     "status": "REFUND_CLOSED"
@@ -260,6 +271,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "online",
     "express": [
       "顺丰 abc3211234567",
@@ -285,6 +297,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "offline",
     "express": [
       "顺丰 abc3211234567"
@@ -308,6 +321,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "offline",
     "express": [],
     "status": "OFFLINE_TRADE_CLOSED"
@@ -329,6 +343,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "offline",
     "express": [
       "顺丰 abc3211234567"
@@ -352,6 +367,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "offline",
     "express": [
       "顺丰 abc3211234567"
@@ -375,6 +391,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "offline",
     "express": [
       "顺丰 abc3211234567"
@@ -398,6 +415,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "offline",
     "express": [],
     "status": "OFFLINE_WAIT_SELLER_SEND_GOODS"
@@ -419,6 +437,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "offline",
     "express": [],
     "status": "OFFLINE_CANCEL_ORDER_BEFORE_SEND"
@@ -440,6 +459,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "offline",
     "express": [
       "顺丰 abc3211234567"
@@ -463,6 +483,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "offline",
     "express": [
       "顺丰 abc3211234567",
@@ -487,6 +508,7 @@
         "num": 2
       }
     ],
+    "returnable": true,
     "pay_way": "offline",
     "express": [
       "顺丰 abc3211234567",
