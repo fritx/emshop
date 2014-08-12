@@ -28,10 +28,10 @@
     .pure-u-1-2
       .line
         span.label 销　量
-        span.sales #{item.sales} 件
+        span.sales #{Math.max(0,item.sales)} 件
       .line
         span.label 库　存
-        span #{item.store} 件
+        span #{Math.max(0,item.store)} 件
 .detail-box
   //- use html
   div!= item.description
