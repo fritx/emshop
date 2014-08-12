@@ -1,10 +1,18 @@
+mixin board(board)
+  li.board-li.lazy-box.pure-u-1
+    - var classes = []
+    if !board.href
+      - classes.push('default')
+    a(href=board.href||false, class=classes)
+      //- board min-height 100px
+      .lazy-box.unloaded
+        img.lazy(alt=board.alt||'', data-original=board.src||false)
+
+- var count = 3
+- var _boards = [boards.slice(0, count), boards.slice(count)]
 ul.pure-g
-  each board in boards
-    li.board-li.lazy-box.pure-u-1-2
-      - var classes = []
-      if !board.href
-        - classes.push('default')
-      a(href=board.href||false, class=classes)
-        //- board min-height 100px
-        .lazy-box.unloaded
-          img.lazy(alt=board.alt||'', data-original=board.src||false)
+  each board in _boards[0]
+    +board(board)
+ul.pure-g.double
+  each board in _boards[1]
+    +board(board)

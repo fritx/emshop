@@ -89,29 +89,26 @@ body {
     margin: 10px 0 -8px;
     li {
       margin-bottom: 6px;
-      &:nth-child(2n) {
-        .lazy-box {
-          padding-right: 3px;
-        }
-      }
-      &:nth-child(2n-1) {
-        .lazy-box {
-          padding-left: 3px;
-        }
-      }
-      &:nth-child(1), &:nth-child(2),
-      &:nth-child(3), &:nth-child(4),
-      &:nth-child(5) {
-        width: 100%;
-        .lazy-box {
-          padding: 0;
-        }
-      }
       .lazy-box {
         &.unloaded {
           overflow-y: hidden;
           // board min-height 100px
           height: 100px;
+        }
+      }
+    }
+    &.double {
+      li {
+        width: 50%;
+        &:nth-child(2n-1) {
+          .lazy-box {
+            padding-right: 3px;
+          }
+        }
+        &:nth-child(2n) {
+          .lazy-box {
+            padding-left: 3px;
+          }
         }
       }
     }
