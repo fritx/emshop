@@ -207,7 +207,7 @@ function saveOrder(oItems, info, cb) {
           products_id: _.pluck(oItems, 'id').join(','),
           products_amounts: _.pluck(oItems, 'num').join(',')
         }, function (data) {
-          if (!/^\d+$/.test(data)) return cb(false);
+          if (!/^\d+$/.test(data)) return cb(false, null, data);
           cb(true, parseInt(data));
         });
       });
