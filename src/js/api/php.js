@@ -186,15 +186,16 @@ function checkAllOnSale(oItems, cb) {
 }
 function fetchOrderInfo(cb) {
   var localInfo = store.get('order_info');
+  if (localInfo.signer_name) return cb(localInfo);
   $.get('../getaddress.php', function(data) {
-    var onlineInfo = JSON.parse(data);
-    var info = _.defaults({
-      signer_name: onlineInfo.consumer_name,
-      signer_tel: onlineInfo.telephone,
-      signer_addr: onlineInfo.address,
-      payer_tel: onlineInfo.payer_telephone
-    }, localInfo);
-    cb(info);
+    data = JSON.parse(data);
+    var onlineInfo = {
+      signer_name: data.consumer_name,
+      signer_tel: data.telephone,
+      signer_addr: data.address,
+      payer_tel: data.payer_telephone
+    };
+    cb(onlineInfo);
   });
 }
 function saveOrder(oItems, info, cb) {
@@ -214,7 +215,7 @@ function saveOrder(oItems, info, cb) {
           products_id: _.pluck(oItems, 'id').join(','),
           products_amounts: _.pluck(oItems, 'num').join(',')
         }, function (data) {
-          if (!/^\d+$/.test(data)) return cb(false);
+          if (!/^\d+$/.test(data)) return cb(false, null, data);
           cb(true, parseInt(data));
         });
       });
