@@ -31,6 +31,7 @@ function fetchShop(cb) {
 function fetchProductsList(opt, cb) {
   opt = opt || {};
   var brand = opt.brand, tags = opt.tags,
+    types = opt.types,
     keyword = opt.keyword,
     orderVal = opt.orderVal, orderKey = opt.orderKey;
   var o = {}, url;
@@ -52,6 +53,12 @@ function fetchProductsList(opt, cb) {
       o.brand = brand;
     } else if (tags) {
       o.tags = tags[0];
+    } else if (types) {
+      o.type = types[0];
+      o.type = ({
+        '促销': 'promoting',
+        '热卖': 'hot'
+      })[o.type]
     }
   }
 

@@ -15,6 +15,7 @@ function valToSign(val) {
 /* parse parameters */
 var brand = params.brand || null,
   tags = params.tags || null,
+  types = params.types || null,
   keyword = params.keyword || null;
 var orderBy = params.orderBy || '-price',
   orderOp = orderBy[0],
@@ -51,6 +52,9 @@ initPage(function () {
     if (tags != null && !_.isArray(tags)) {
       tags = [tags];
     }
+    if (types != null && !_.isArray(types)) {
+      types = [types];
+    }
 
     /* title */
     var shortTitle = '宝贝列表';
@@ -63,6 +67,7 @@ initPage(function () {
     fetchProductsList({
       brand: brand,
       tags: tags,
+      types: types,
       keyword: keyword,
       orderVal: orderVal,
       orderKey: orderKey

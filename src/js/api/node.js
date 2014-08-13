@@ -8,6 +8,7 @@ function fetchProductsList(opt, cb) {
   var seperator = ',';
   var brand = opt.brand,
     tags = opt.tags,
+    types = opt.types,
     keyword = opt.keyword,
     orderVal = opt.orderVal,
     orderKey = opt.orderKey;
@@ -19,6 +20,11 @@ function fetchProductsList(opt, cb) {
     if (tags != null) {
       items = _.filter(items, function (item) {
         return 1 <= _.intersection(item.tags, tags).length;
+      });
+    }
+    if (types != null) {
+      items = _.filter(items, function (item) {
+        return 1 <= _.intersection(item.types, types).length;
       });
     }
     if (keyword != null) {
