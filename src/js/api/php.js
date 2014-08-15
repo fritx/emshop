@@ -230,6 +230,7 @@ function parseItem(dItem) {
     id: +dItem.id,
     title: dItem.title,
     description: dItem.description,
+    skucode: dItem.skucode,
     image: dItem.small_url,
     imageLarge: dItem.large_url,
     sales: +dItem.sales,
@@ -239,6 +240,9 @@ function parseItem(dItem) {
     shopPrice: +dItem.middle_price,
     marketPrice: +dItem.high_price
   };
+  if (/^choujiang/i.test(item.skucode)) {
+    item._lottery = true;
+  }
   calcPrice(item);
   return item;
 }

@@ -72,11 +72,15 @@ function fetchCart(cb) {
         }
         var xItem = _.extend(cItem, {
           title: dItem.title,
+          tags: dItem.tags,
           image: dItem.image,
           store: dItem.store,
           onSale: dItem.onSale,
           _price: dItem._price
         });
+        if (_.contains(item.tags, '抽奖')) {
+          item._lottery = true;
+        }
         return xItem;
       });
       cb(_.compact(xItems));

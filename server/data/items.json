@@ -1,5 +1,21 @@
 [
   {
+    "id": 0,
+    "title": "电子抽奖券",
+    "description": "电子抽奖 抽出未来",
+    "brand": "官方",
+    "tags": ["电子", "抽奖"],
+    "types": ["促销", "热卖"],
+    "image": "content/items/sufei.png",
+    "imageLarge": "content/items/sufei-large.png",
+    "sales": 3245,
+    "store": 3,
+    "onSale": true,
+    "marketPrice": 0.03,
+    "shopPrice": 0.02,
+    "promotingPrice": 0.01
+  },
+  {
     "id": 1,
     "title": "苏菲 超熟睡系列柔棉感",
     "description": "货号：BQ6018<br>规格：18片/包<br>尺寸：155mm<br>香型：无香<br>材质：棉柔表层<br>保质期：3年<br>条形码：6903244370899",
