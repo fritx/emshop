@@ -34,4 +34,7 @@ ul.pure-g
               .pure-form
                 span.price ￥#{item._price.toFixed(2)}
                 i.fa.fa-times
-                input.num(type='text', value=item.num)
+                if typeof item.limit === 'number'
+                  input.num(type='text', value=item.limit, readonly)
+                else
+                  input.num(type='text', value=item.num)

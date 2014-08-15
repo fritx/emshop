@@ -6,6 +6,7 @@
     "brand": "官方",
     "tags": ["电子", "抽奖"],
     "types": ["促销", "热卖"],
+    "limit": 1,
     "image": "content/items/sufei.png",
     "imageLarge": "content/items/sufei-large.png",
     "sales": 3245,

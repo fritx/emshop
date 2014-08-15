@@ -88,6 +88,7 @@ function fetchCart(cb) {
         var xItem = _.extend(cItem, {
           title: item.title,
           image: item.image,
+          limit: item.limit,
           store: item.store,
           onSale: item.onSale,
           _price: item._price
@@ -242,6 +243,10 @@ function parseItem(dItem) {
   };
   if (/^choujiang/i.test(item.skucode)) {
     item._lottery = true;
+  }
+  // 抽奖只能一次购买一件
+  if (item._lottery) {
+    item.limit = 1;
   }
   calcPrice(item);
   return item;
