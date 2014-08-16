@@ -88,6 +88,7 @@ function fetchCart(cb) {
         var xItem = _.extend(cItem, {
           title: item.title,
           image: item.image,
+          _lottery: item._lottery,
           limit: item.limit,
           store: item.store,
           onSale: item.onSale,
@@ -241,9 +242,7 @@ function parseItem(dItem) {
     shopPrice: +dItem.middle_price,
     marketPrice: +dItem.high_price
   };
-  if (/^choujiang/i.test(item.skucode)) {
-    item._lottery = true;
-  }
+  item._lottery = /^choujiang/i.test(item.skucode);
   // 抽奖只能一次购买一件
   if (item._lottery) {
     item.limit = 1;

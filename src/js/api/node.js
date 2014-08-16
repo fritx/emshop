@@ -37,10 +37,8 @@ function fetchProductsList(opt, cb) {
       });
     }
     _.each(items, function (item) {
+      item._lottery = _.contains(item.tags, '抽奖');
       calcPrice(item);
-      if (_.contains(item.tags, '抽奖')) {
-        item._lottery = true;
-      }
     });
     // sort items
     if (orderKey != null) {
@@ -75,7 +73,7 @@ function fetchCart(cb) {
         }
         var xItem = _.extend(cItem, {
           title: dItem.title,
-          tags: dItem.tags,
+          _lottery: dItem._lottery,
           limit: dItem.limit,
           image: dItem.image,
           store: dItem.store,

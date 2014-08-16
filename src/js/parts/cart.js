@@ -26,12 +26,39 @@ function prepareOrder(cb) {
     $num.val(item.num);
     item.checked = $tick.is('.on');
   });
-  saveCart(xItems, function () {
-    showOrder();
-    if (cb) {
-      cb();
+
+  // 过滤购物车商品
+  filterCartItems(xItems);
+  var unchecked = _.where(xItems, { checked: false });
+  $('.tick').each(function (i, el) {
+    var $tick = $(el);
+    var $item = $tick.closest('.item-box');
+    var item = _.findWhere(unchecked, {
+      id: +$item.attr('data-id')
+    });
+    if (item) {
+      item.checked = false;
+      $tick.removeClass('on');
     }
   });
+  
+  saveCart(xItems, function () {
+    showOrder();
+    if (cb) cb();
+  });
+}
+
+function filterCartItems(items) {
+  var checkedNonLottery = _.filter(items, function(item) {
+    return item.checked && !item._lottery;
+  });
+  if (checkedNonLottery.length) {
+    _.each(items, function(v) {
+      if (v._lottery) {
+        v.checked = false;
+      }
+    });
+  }
 }
 
 function listItems() {
@@ -113,11 +140,10 @@ initPage(function () {
       /* list items */
       listItems();
 
-      /* display order desc */
-      showOrder();
-
-      /* ready */
-      loadReady();
+      prepareOrder(function() {
+        /* ready */
+        loadReady();
+      });
     });
   });
 });
