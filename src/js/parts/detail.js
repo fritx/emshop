@@ -3,6 +3,25 @@ function showItem(item) {
     .html(
       JST['detail-item']({ item: item })
     );
+
+  var state = 0;
+  $('.detail-box>div').children().each(function(i, el) {
+    var tag = el.tagName;
+    var $el = $(el);
+    if (state === 0 && tag !== 'BR' && tag !== 'P' ||
+      state === 1 && (tag === 'BR' || tag === 'P')) {
+      state++;
+    }
+    if (state === 0 || state === 2) {
+      if (tag === 'BR' ||
+        (tag === 'P' && /^\s*$/.test($el.text()))) {
+        $el.remove();
+      }
+    }
+  });
+  $('.detail-box>div').html(function(i, old) {
+    return old.replace(/^[\s(&nbsp;)]+|[\s(&nbsp;)]+$/, '');
+  });
 }
 
 function addToCart(silient, cb) {
@@ -60,7 +79,7 @@ initPage(function () {
       calcPrice(item);
 
       item.description = (function(desc) {
-        desc = desc.trim();
+        desc = desc.replace(/^[\s\r\n]+|[\s\r\n]+$/g, '');
         desc = desc.replace(
           /<img src="([^"]*)"([^>]*)>/g,
           '<div class="lazy-box unloaded"><img class="lazy" data-original="$1"$2></div>'
