@@ -105,6 +105,12 @@ function ask(msg, cb) {
   alertify.confirm(msg, cb);
 }
 
+function calcLimit(item) {
+  // 抽奖/秒杀只能一次购买一件
+  if (item._lottery || item._seckill) {
+    item._limit = 1;
+  }
+}
 function calcPrice(item) {
   item._price = item.promotingPrice != null ?
     item.promotingPrice :

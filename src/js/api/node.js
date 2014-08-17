@@ -38,6 +38,8 @@ function fetchProductsList(opt, cb) {
     }
     _.each(items, function (item) {
       item._lottery = _.contains(item.tags, '抽奖');
+      item._seckill = _.contains(item.tags, '秒杀');
+      calcLimit(item);
       calcPrice(item);
     });
     // sort items
@@ -74,7 +76,7 @@ function fetchCart(cb) {
         var xItem = _.extend(cItem, {
           title: dItem.title,
           _lottery: dItem._lottery,
-          limit: dItem.limit,
+          _limit: dItem._limit,
           image: dItem.image,
           store: dItem.store,
           onSale: dItem.onSale,

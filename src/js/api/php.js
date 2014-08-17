@@ -89,7 +89,7 @@ function fetchCart(cb) {
           title: item.title,
           image: item.image,
           _lottery: item._lottery,
-          limit: item.limit,
+          _limit: item._limit,
           store: item.store,
           onSale: item.onSale,
           _price: item._price
@@ -243,10 +243,8 @@ function parseItem(dItem) {
     marketPrice: +dItem.high_price
   };
   item._lottery = /^choujiang/i.test(item.skucode);
-  // 抽奖只能一次购买一件
-  if (item._lottery) {
-    item.limit = 1;
-  }
+  item._seckill = /^miaosha/i.test(item.skucode);
+  calcLimit(item);
   calcPrice(item);
   return item;
 }
