@@ -15,6 +15,10 @@ function showForm(info) {
         key: 'signer_addr'
       },
       {
+        title: '付款人',
+        key: 'payer_name'
+      },
+      {
         title: '付款人电话',
         key: 'payer_tel'
       }
@@ -98,7 +102,7 @@ function submitOrder() {
   }, {});
   if (_.some([
     'signer_name', 'signer_tel', 'signer_addr',
-    'payer_tel', 'pay_way'
+    'payer_name', 'payer_tel', 'pay_way'
   ], function (key) {
     return info[key] === '';
   })) {

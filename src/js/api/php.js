@@ -195,6 +195,7 @@ function fetchOrderInfo(cb) {
       signer_name: data.consumer_name,
       signer_tel: data.telephone,
       signer_addr: data.address,
+      payer_name: data.payer_name,
       payer_tel: data.payer_telephone
     };
     cb(onlineInfo);
@@ -210,6 +211,7 @@ function saveOrder(oItems, info, cb) {
           consumer_name: info.signer_name,
           telephone: info.signer_tel,
           address: info.signer_addr,
+          payer_name: info.payer_name,
           payer_telephone: info.payer_tel,
           payway: info.pay_way,
           message: info.message,
