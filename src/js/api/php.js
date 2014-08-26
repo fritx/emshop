@@ -202,6 +202,7 @@ function fetchOrderInfo(cb) {
   });
 }
 function saveOrder(oItems, info, cb) {
+  info.area = info.area.replace(/站$/, '');
   saveOrderInfo(info, function () {
     validate(function(ok) {
       if (!ok) return cb(false);
@@ -267,11 +268,11 @@ function saveData(data, cb) {
     saveOrderInfo(info, function() {
       $.post('../setarea.php', {
         area_id: data.area.id
-      }, function (area) {
+      }, function () {
         $.post('../setconsumer.php', {
           consumerOPID: data.opid
         }, function () {
-          cb(!!area);
+          cb();
         });
       });
     });

@@ -226,11 +226,7 @@ function initPage(cb) {
 
       saveData({
         area: area, opid: opid
-      }, function (ok) {
-        if (!ok) {
-          return notify('地区不存在');
-        }
-
+      }, function () {
         cb();
       });
     });

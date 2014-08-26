@@ -139,6 +139,7 @@ function fetchOrderInfo(cb) {
   cb(info);
 }
 function saveOrder(oItems, info, cb) {
+  info.area = info.area.replace(/站$/, '');
   saveOrderInfo(
     _.omit(info, ['message']),
     function () {
