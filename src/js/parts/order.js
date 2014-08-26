@@ -3,6 +3,11 @@ function showForm(info) {
   fields = [
     [
       {
+        readonly: true,
+        title: '商城地区',
+        key: 'area'
+      },
+      {
         title: '收货人',
         key: 'signer_name'
       },
@@ -53,6 +58,9 @@ function showForm(info) {
     _.each(_fields, function (field) {
       field.value = info[field.key] || field.value;
     });
+  }
+  if (fields[0][0].value) {
+    fields[0][0].value += '站';
   }
   $('#form-div')
     .html(JST['order-order']({
