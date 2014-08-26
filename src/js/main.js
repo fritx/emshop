@@ -81,9 +81,9 @@ function link(href, _params) {
   var newParams = searchToParams(search);
   _.extend(newParams, _params);
   // prepend area
-  newParams = _.extend({
-    area: area && area.id
-  }, newParams);
+  if (area != null) {
+    newParams.area = area.id
+  }
   location.href = path + paramsToSearch(newParams);
 }
 function notify(msg, back) {
@@ -213,19 +213,21 @@ function initPage(cb) {
   fetchAreasList(function (areas) {
     fetchOrderInfo(function(info) {
       area = params.area ? _.findWhere(areas, { id: +params.area }) :
-        _.findWhere(areas, { title: info.area }) || areas[0];
-      if (!area) {
-        notify('你的地区信息为空啊!');
-        throw new Error('Empty area.');
+        _.findWhere(areas, { title: info.area });
+
+      if (!area && !params.area) {
+        return notify('地区为空');
+      } else if (!area) {
+        return notify('地区不存在');
+      } else if (!params.area) {
+        return link(true);
       }
-      if (!params.area) return link(location.href);
 
       saveData({
         area: area, opid: opid
       }, function (ok) {
         if (!ok) {
-          notify('你的地区信息不正确啊!');
-          throw new Error('Invalid area.');
+          return notify('地区不存在');
         }
 
         cb();
