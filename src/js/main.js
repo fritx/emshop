@@ -216,7 +216,8 @@ function initPage(cb) {
         _.findWhere(areas, { title: info.area });
 
       if (!area && !params.area) {
-        return notify('地区为空');
+        //return notify('地区为空');
+        area = areas[0];
       } else if (!area) {
         return notify('地区不存在');
       } else if (!params.area) {

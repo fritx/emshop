@@ -36,12 +36,12 @@
       clearTimeout(timeout);
       loadReady();
       ask('确定提交订单,并进入微信支付吗?', function(ok) {
-        if (!ok) return link('orders/');
+        if (!ok) return location.href = 'orders/';
         WeixinJSBridge.invoke('getBrandWCPayRequest', data, function(res) {
           //if (res.err_msg !== 'get_brand_wcpay_request:ok') {
           //  return notify('您已取消本次微信支付', 'orders/');
           //}
-          link('orders/');
+          location.href = 'orders/';
         });
       });
     }
